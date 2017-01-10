@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title><%= title %></title>
+
+    <script>
+      window.onload = function() {
+        var socket = io.connect(window.location);
+        socket.emit('echo', 'THIS IS THE CLIENT');
+      }
+    </script>
+  </head>
+
+  <body>
+    <p>Hello World!</p>
+  </body>
+
+</html>
