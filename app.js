@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 // create a new express server
 var app = express();
+var http = require('http'); // may ahve to remove
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
