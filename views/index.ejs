@@ -3,10 +3,10 @@
 
   <head>
     <title><%= title %></title>
-
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script>
+      var socket = io.connect(window.location); 
       window.onload = function() {
-        var socket = io.connect(window.location);
         socket.emit('echo', 'THIS IS THE CLIENT');
       }
     </script>
