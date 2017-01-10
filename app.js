@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 var app = express();
 var http = require('http'); // may ahve to remove
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
 
 // cloud foundry
 var cfenv = require('cfenv');
@@ -41,6 +40,8 @@ server.listen(port);
 //server.on('error', onError);
 //server.on('listening', onListening);
 
+// initialized socket.io
+var io = require('socket.io')(server);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
