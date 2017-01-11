@@ -55,14 +55,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// socket stuff
-io.sockets.on('connection', function (socket) {
-    console.log('client connect');
-    socket.on('echo', function (data) {
-        console.log(data);
-    });
-});
-
 // middleware to make io accessible to routers
 app.use(function(req, res, next) {
   req.io = io;
@@ -71,3 +63,6 @@ app.use(function(req, res, next) {
 
 // require routes
 app.use(require('./controllers'));
+
+// require sockets
+require('./sockets/sockets.js')(io);

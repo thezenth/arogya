@@ -5,16 +5,34 @@
     <title><%= title %></title>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script>
+
+      /* These can be put in an external js file included in all pages */
       var socket = io();
+
       function emitTest(msg) {
         socket.emit('echo', msg);
       }
+
+      function emitValue(type, data) {
+        socket.emit(type, data)
+      }
+
+      /* These are functions specific to this page */
+      function emitFoodQuery() {
+        console.log('hello!');
+        /*emitValue(
+          '_food_query',
+          document.getElementById('foodQuery').value
+        );*/
+      }
+
     </script>
   </head>
 
   <body>
     <p>Hello World!</p>
-    <button onclick="emitTest();">Click me!</button>
+    <input id="foodQuery" type="text" name="foodQuery">Add a food<br>
+    <button onclick="emitTest('hullo!');">Click me!</button>
   </body>
 
 </html>
