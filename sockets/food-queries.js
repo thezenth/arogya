@@ -4,9 +4,6 @@ module.exports = function(socket) {
   socket.on('_relevant_foods_request', function(data) {
     console.log(data);
     var foodQuery = data.foodQuery;
-    // perform USDA API relevant food search here
-    // get the food query from the query string
-    var foodQuery = req.query.q;
 
     // api key
     var apiKey = "FYpMQAWPYLHGPJvmgvtGqNeSStYiFlSgy9Wn3YXC";
