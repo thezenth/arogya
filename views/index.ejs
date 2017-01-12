@@ -3,8 +3,15 @@
 
   <head>
     <title><%= title %></title>
+    <% include ./partials/head.ejs %>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script>
+
+      /* Some basic DOM functions that don't need to be in this HTML file */
+      function insertAfter( referenceNode, newNode )
+      {
+          referenceNode.parentNode.insertBefore( newNode, referenceNode.nextSibling );
+      }
 
       /* These can be put in an external js file included in all pages */
       var socket = io();
@@ -20,14 +27,45 @@
       /* These are functions specific to this page */
       function emitFoodQuery() {
         console.log('hello!');
-        /*emitValue(
-          '_food_query',
-          document.getElementById('foodQuery').value
-        );*/
+        emitValue(
+          '_relevant_foods_request',
+          { foodQuery: document.getElementById('foodQuery').value }
+        );
       }
 
+
+      /* listeners specific to this page */
+      socket.on('_relevant_foods_returned', function(data) {
+        var foods = data.items;
+
+        // load autocomplete div template (i.e., the big box for the results)
+        var divTemp = document.querySelector('#autocomplete-div-template');
+        var divClone = document.importNode(divTemp.content, true);
+
+        // then, pass each item in the list of returned foods here
+        for(var f = 0; f<foods.length; f++) {
+          var bTemp = document.querySelector('#autocomplete-div-template');
+          var bClone = document.importNode(bTemp.content, true);
+          bClone.textContent = foods[f].name;
+          divClone.appendChild(bClone);
+        }
+
+        // append the whole thing to the document
+        document.body.appendChild(divClone);
+
+      });
     </script>
   </head>
+
+  <!-- Autocomplete div template -->
+  <template id="autocomplete-div-template">
+    <div class="autocomplete-div-class"></div>
+  </template>
+
+  <!-- Button as autocomplete row template -->
+  <template id="autocomplete-div-row-template">
+    <button class="autocomplete-div-row-class"></button>
+  </template>
 
   <body>
     <p>Hello World!</p>

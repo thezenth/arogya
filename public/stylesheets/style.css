@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+.autocomplete-div-class {
+  color: white;
+  border-color: black;
+  border-width: medium;
+}
+
+.autocomplete-div-row-class {
+  width: 100%;
+}
