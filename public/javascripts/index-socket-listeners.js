@@ -20,6 +20,7 @@ socket.on('_relevant_foods_returned', function(data) {
     var setFood = foods[i];
     console.dir(setFood);
     button.onclick = function() {
+      console.log(this.innerHTML);
       addFoodToMeal(foods[i]);
     }
     div.appendChild(button);
