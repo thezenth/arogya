@@ -1,5 +1,9 @@
 function callPartial() {
+
+  var reader = new FileReader();
+  var partialStr = reader.readAsText('/partials/test.ejs');
+
   $("body").append(
-    ejs.render("<%- include partials/test %>", { msg: "Hello! I'm a partial!" }, { filename: './partials/test.ejs'})
+    ejs.render(partialStr, { msg: "Hello! I'm a partial!" });
   );
 }
