@@ -55,10 +55,23 @@ socket.on('_saved_meal_to_db', function(data) {
   setTimeout(function() {
     document.getElementById("main-div").innerHTML = "";
     // add back the newMealButton
+    <button id="newMealButton" onclick="beginNewMeal();" class="waves-effect waves-light btn">
+      <i class="material-icons left">create</i>Record
+    </button>
+
     var newMealButton = document.createElement("button");
     newMealButton.id = "newMealButton";
+    newMealButton.className = "waves-effect waves-light btn";
+    newMealButton.innerHTML = "Record"; // text of the button
+    // onclick
     newMealButton.onClick = function(){ beginNewMeal(); };
-    newMealButton.innerHTML = "Create a new meal";
+
+    // append icon
+    var icon = document.createElement("i");
+    icon.className = "material-icons left";
+    icon.innerHTML = "create"; // this is the reference to the material icon font
+    newMealButton.appendChild(icon);
+
     document.getElementById("main-div").appendChild(newMealButton);
   }, time)
 });
