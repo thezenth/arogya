@@ -38,34 +38,28 @@
       socket.on('_relevant_foods_returned', function(data) {
         var foods = data.items;
 
-        // load autocomplete div template (i.e., the big box for the results)
-        var divTemp = document.querySelector('#autocomplete-div-template');
-        var divClone = document.importNode(divTemp.content, true);
+        // delete any previous autocomplete divs
+        var previousDiv = document.getElementById("autocomplete-div");
+        previousDiv.innerHTML = "";
+        previousDiv.outerHTML = "";
+        delete previousDiv;
 
-        // then, pass each item in the list of returned foods here
-        for(var f = 0; f<foods.length; f++) {
-          var bTemp = document.querySelector('#autocomplete-div-row-template');
-          var bClone = document.importNode(bTemp.content, true);
-          bClone.textContent = foods[f].name;
-          divClone.appendChild(bClone);
+        // load autocomplete div template (i.e., the big box for the results)
+        var div = document.createElement("div");
+        div.id = "autocomplete-div";
+        div.className = "autocomplete-div-class";
+
+        for (var f = 0; f<foods.length; f++) {
+          var button = document.createElement("div");
+          button.className = "autocomplete-div-row-class";
+          button.innerHTML = foods[f].name;
+          div.appendChild(button);
         }
 
-        // append the whole thing to the document
-        document.body.appendChild(divClone);
-
+        document.body.appendChild(div);
       });
     </script>
   </head>
-
-  <!-- Autocomplete div template -->
-  <template id="autocomplete-div-template">
-    <div class="autocomplete-div-class"></div>
-  </template>
-
-  <!-- Button as autocomplete row template -->
-  <template id="autocomplete-div-row-template">
-    <button class="autocomplete-div-row-class"></button>
-  </template>
 
   <body>
     <p>Hello World!</p>
