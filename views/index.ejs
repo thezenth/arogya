@@ -3,18 +3,15 @@
 
   <head>
     <title><%= title %></title>
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script>
-      var socket = io();
-      function emitTest(msg) {
-        socket.emit('echo', msg);
-      }
-    </script>
+    <% include ./partials/head.ejs %>
+    <script src="/javascripts/index-food-querying.js"></script>
+    <script src="/javascripts/index-socket-listeners.js"></script>
   </head>
 
   <body>
-    <p>Hello World!</p>
-    <button onclick="emitTest();">Click me!</button>
+    <button id="newMealButton" onclick="beginNewMeal();">Create a new meal</button>
+    <!-- <input id="foodQuery" type="text" name="foodQuery" onchange="emitFoodQuery();"> -->
+    <!-- <button onclick="emitTest('hullo!');">Click me!</button> -->
   </body>
 
 </html>

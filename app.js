@@ -48,20 +48,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-// socket stuff
-io.sockets.on('connection', function (socket) {
-    console.log('client connect');
-    socket.on('echo', function (data) {
-        console.log(data);
-    });
-});
 
 // middleware to make io accessible to routers
 app.use(function(req, res, next) {
@@ -71,3 +63,6 @@ app.use(function(req, res, next) {
 
 // require routes
 app.use(require('./controllers'));
+
+// require sockets
+require('./sockets/sockets.js')(io);
