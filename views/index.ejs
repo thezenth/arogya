@@ -96,7 +96,7 @@
           var button = document.createElement("button");
           button.className = "autocomplete-div-row-class";
           button.innerHTML = foods[i].name;
-          button.onclick = addFoodToMeal(foods[i]);
+          button.setAttribute('onclick', 'addFoodToMeal(foods[i])');
           div.appendChild(button);
         }
 
