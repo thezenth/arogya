@@ -27,12 +27,12 @@ function beginNewMeal() {
   queryInput.name = "foodQuery";
   queryInput.type = "text";
   queryInput.onkeyup = function(){ emitFoodQuery(); };
-  document.body.appendChild(queryInput);
+  document.getElementById("main-div").appendChild(queryInput);
 
   var finishMealButton = document.createElement("button");
   finishMealButton.innerHTML = "Done?";
   finishMealButton.onclick = function(){ finishMeal(); };
-  document.body.appendChild(finishMealButton);
+  document.getElementById("main-div").appendChild(finishMealButton);
 }
 
 function finishMeal() {
