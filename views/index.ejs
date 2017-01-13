@@ -6,9 +6,11 @@
     <% include ./partials/head.ejs %>
     <script src="/javascripts/index-food-querying.js"></script>
     <script src="/javascripts/index-socket-listeners.js"></script>
+    <script src="/javascripts/dynamic-partials.js"></script>
   </head>
 
   <body>
+    <button onclick="callPartial();"></button>
     <button id="newMealButton" onclick="beginNewMeal();">Create a new meal</button>
     <!-- <input id="foodQuery" type="text" name="foodQuery" onchange="emitFoodQuery();"> -->
     <!-- <button onclick="emitTest('hullo!');">Click me!</button> -->
