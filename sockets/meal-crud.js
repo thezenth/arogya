@@ -1,4 +1,4 @@
-var request = require('./request');
+var request = require('request');
 
 var dietData = require('../db.js').diet_data;
 
