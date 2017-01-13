@@ -1,4 +1,5 @@
 var request = require('request');
+var async = require('async');
 
 var dietData = require('../db.js').diet_data;
 
