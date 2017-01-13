@@ -57,7 +57,15 @@ socket.on('_saved_meal_to_db', function(data) {
     document.getElementById("main-div").innerHTML = "";
 
     renderPartial("main-div",
-      "<button id='newMealButton' onclick='beginNewMeal();' class='waves-effect waves-light btn'><i class='material-icons left'>create</i>Record</button>"
+      `<div class="row">
+          <div class="col s4"></div>
+          <div class="col s4 container">
+            <button id="newMealButton" onclick="beginNewMeal();" class="waves-effect waves-light btn">
+              <i class="material-icons left">create</i>Record
+            </button>
+          </div>
+          <div class="col s4"></div>
+      </div>`
     );
 
     /*
