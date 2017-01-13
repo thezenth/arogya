@@ -62,6 +62,7 @@
       }
 
       function finishMeal() {
+        console.dir(newMeal);
         socket.emit('_finished_meal', { meal: newMeal });
       }
 
