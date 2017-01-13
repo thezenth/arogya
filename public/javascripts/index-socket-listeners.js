@@ -11,11 +11,11 @@ socket.on('_relevant_foods_returned', function(data) {
   // load autocomplete div template (i.e., the big box for the results)
   var div = document.createElement("div");
   div.id = "autocomplete-div";
-  div.className = "autocomplete-div-class";
+  //div.className = "autocomplete-div-class";
 
   for (var i = 0; i<foods.length; i++) {
     var button = document.createElement("button");
-    button.className = "autocomplete-div-row-class";
+    //button.className = "autocomplete-div-row-class";
     button.innerHTML = foods[i].name;
     // we set the value of the button (even though this is typically unusued for a button) to store the food object for later
     // as well, we stringify it to preserve the JSON
