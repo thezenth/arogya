@@ -39,10 +39,10 @@
         var foods = data.items;
 
         // delete any previous autocomplete divs
-        var previousDiv = document.getElementById("autocomplete-div");
-        previousDiv.innerHTML = "";
-        previousDiv.outerHTML = "";
-        delete previousDiv;
+        if(document.getElementById("autocomplete-div")) {
+          document.getElementById("autocomplete-div").outerHTML = "";
+          delete document.getElementById("autocomplete-div");
+        }
 
         // load autocomplete div template (i.e., the big box for the results)
         var div = document.createElement("div");
