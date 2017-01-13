@@ -1,4 +1,4 @@
-var dietData = require('./db.js').diet_data;
+var dietData = require('../db.js').diet_data;
 
 module.exports = function(socket) {
   socket.on('_finished_meal', function(data) {
