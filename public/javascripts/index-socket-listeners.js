@@ -17,11 +17,10 @@ socket.on('_relevant_foods_returned', function(data) {
     var button = document.createElement("button");
     button.className = "autocomplete-div-row-class";
     button.innerHTML = foods[i].name;
-    var setFood = foods[i];
-    console.dir(setFood);
+    button.value = foods[i]; // we set the value of the button (even though this is typically unusued for a button) to store the food object for later
+    console.dir(button.value);
     button.onclick = function() {
-      console.log(this.innerHTML);
-      addFoodToMeal(foods[i]);
+      addFoodToMeal(this.value);
     }
     div.appendChild(button);
   }
