@@ -1,5 +1,5 @@
-function renderPartial(parentId, partial, data) {
-  $(parentId).append(
-    ejs.render(partial, data)
+function renderPartial(parentId, partial) {
+  $('#' + parentId).append(
+    ejs.render(partial)
   );
 }

@@ -53,12 +53,15 @@ socket.on('_saved_meal_to_db', function(data) {
   // wait a specified amount of time to delete this message, and then add back the addMeal button
   var time = 3 * 1000;
   setTimeout(function() {
-    document.getElementById("main-div").innerHTML = "";
-    // add back the newMealButton
-    <button id="newMealButton" onclick="beginNewMeal();" class="waves-effect waves-light btn">
-      <i class="material-icons left">create</i>Record
-    </button>
 
+    document.getElementById("main-div").innerHTML = "";
+
+    renderPartial("main-div",
+      "<button id='newMealButton' onclick='beginNewMeal();' class='waves-effect waves-light btn'><i class='material-icons left'>create</i>Record</button>"
+    );
+
+    /*
+    // add back the newMealButton
     var newMealButton = document.createElement("button");
     newMealButton.id = "newMealButton";
     newMealButton.className = "waves-effect waves-light btn";
@@ -73,5 +76,6 @@ socket.on('_saved_meal_to_db', function(data) {
     newMealButton.appendChild(icon);
 
     document.getElementById("main-div").appendChild(newMealButton);
+    */
   }, time)
 });
