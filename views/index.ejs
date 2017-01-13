@@ -96,7 +96,10 @@
           var button = document.createElement("button");
           button.className = "autocomplete-div-row-class";
           button.innerHTML = foods[i].name;
-          button.setAttribute('onclick', "addFoodToMeal("+foods[i]+")");
+          var setFood = foods[i];
+          button.onclick = function() {
+            addFoodToMeal(setFood);
+          }
           div.appendChild(button);
         }
 
