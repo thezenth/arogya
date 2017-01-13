@@ -33,6 +33,52 @@
         );
       }
 
+      function beginNewMeal() {
+        // create meal object/clear out any existing ones
+        document.cookie.newMeal = {};
+        document.cookie.newMeal.foods = [];
+
+        // delete create meal button
+        document.getElementById("newMealButton").outerHTML = "";
+        delete document.getElementById("newMealButton").outerHTML;
+
+        // instantiate other html stuff
+        var queryInput = document.createElement("input");
+        queryInput.id = "foodQuery";
+        queryInput.name = "foodQuery";
+        queryInput.type = "text";
+        queryInput.onchange = function(){ emitFoodQuery(); };
+        document.body.appendChild(queryInput);
+
+        var finishMealButton = document.createElement("button");
+        finishMealButton.innerHTML = "Done?";
+        finishMealButton.onclick = function(){ finishMeal(); };
+        document.body.appendChild(finishMealButton);
+      }
+
+      function finishMeal() {
+        socket.emit('_finished_meal', { meal: document.cookie.meal });
+
+        // delete everything
+        document.body.innerHTML = "";
+
+        // add back the newMealButton
+        var newMealButton = document.createElement("button");
+        newMealButton.id = "newMealButton";
+        newMealButton.onClick = function(){ beginNewMeal(); };
+        newMealButton.innerHTML = "Create a new meal";
+        document.body.appendChild(newMealButton);
+      }
+
+      function addFoodToMeal(f) {
+        // push to the new meal being constructed
+        document.cookie.newMeal.foods.push(f);
+        // delete any autocomplete divs
+        if(document.getElementById("autocomplete-div")) {
+          document.getElementById("autocomplete-div").outerHTML = "";
+          delete document.getElementById("autocomplete-div");
+        }
+      }
 
       /* listeners specific to this page */
       socket.on('_relevant_foods_returned', function(data) {
@@ -49,10 +95,11 @@
         div.id = "autocomplete-div";
         div.className = "autocomplete-div-class";
 
-        for (var f = 0; f<foods.length; f++) {
+        for (var i = 0; i<foods.length; i++) {
           var button = document.createElement("button");
           button.className = "autocomplete-div-row-class";
-          button.innerHTML = foods[f].name;
+          button.innerHTML = foods[i].name;
+          button.onclick = function(){ addFoodToMeal(foods[i]); };
           div.appendChild(button);
         }
 
@@ -74,9 +121,9 @@
   </head>
 
   <body>
-    <p>Hello World!</p>
-    <input id="foodQuery" type="text" name="foodQuery" onchange="emitFoodQuery();">Add a food<br>
-    <button onclick="emitTest('hullo!');">Click me!</button>
+    <button id="newMealButton" onclick="beginNewMeal();">Create a new meal</button>
+    <!-- <input id="foodQuery" type="text" name="foodQuery" onchange="emitFoodQuery();"> -->
+    <!-- <button onclick="emitTest('hullo!');">Click me!</button> -->
   </body>
 
 </html>
