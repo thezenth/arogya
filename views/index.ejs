@@ -44,7 +44,7 @@
 
         // then, pass each item in the list of returned foods here
         for(var f = 0; f<foods.length; f++) {
-          var bTemp = document.querySelector('#autocomplete-div-template');
+          var bTemp = document.querySelector('#autocomplete-div-row-template');
           var bClone = document.importNode(bTemp.content, true);
           bClone.textContent = foods[f].name;
           divClone.appendChild(bClone);
