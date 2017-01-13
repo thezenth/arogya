@@ -22,7 +22,8 @@ module.exports = function(socket) {
         if (parsedBody.errors) {
           // error handling - if something non-fatal goes wrong, send it to the warnings page
           console.error(parsedBody.errors.error[0]);
-          res.redirect('/warnings?m=' + parsedBody.errors.error[0].message);
+          // emit the error to the client
+          socket.emit('_relevant_foods_not_found', { errMsg: parsedBody.errors.error[0] });
         } else {
           var items = parsedBody.list.item;
 

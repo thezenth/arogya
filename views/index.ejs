@@ -58,6 +58,18 @@
 
         document.body.appendChild(div);
       });
+
+      socket.on('_relevant_foods_not_found', function(data) {
+        // delete any previous autocomplete divs
+        if(document.getElementById("autocomplete-div")) {
+          document.getElementById("autocomplete-div").outerHTML = "";
+          delete document.getElementById("autocomplete-div");
+        }
+
+        // log the error client side as well
+        console.error(data.errorMsg);
+      });
+
     </script>
   </head>
 
