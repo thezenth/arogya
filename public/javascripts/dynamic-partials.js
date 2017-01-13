@@ -1,3 +1,5 @@
 function callPartial() {
-  $("body").append('<%- include ./partials/test.ejs %>');
+  $("body").append(
+    ejs.render("<% include ./partials/test.ejs %>");
+  );
 }
