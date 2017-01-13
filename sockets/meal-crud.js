@@ -14,6 +14,5 @@ module.exports = function(socket) {
         socket.emit('_saved_meal_to_db', null);
       }
     });
-
   });
 }
