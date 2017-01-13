@@ -1,3 +1,3 @@
 function callPartial() {
-  $("body").append('<% include ./partials/test.ejs %>');
+  $("body").append('<%- include ./partials/test.ejs %>');
 }
