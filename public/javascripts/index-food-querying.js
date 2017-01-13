@@ -26,7 +26,7 @@ function beginNewMeal() {
   queryInput.id = "foodQuery";
   queryInput.name = "foodQuery";
   queryInput.type = "text";
-  queryInput.onkeypress = function(){ emitFoodQuery(); };
+  queryInput.onkeyup = function(){ emitFoodQuery(); };
   document.body.appendChild(queryInput);
 
   var finishMealButton = document.createElement("button");
