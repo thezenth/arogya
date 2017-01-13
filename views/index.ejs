@@ -24,6 +24,11 @@
         socket.emit(type, data)
       }
 
+      /* variables specific to this page */
+      var newMeal = {
+        foods: [],
+      };
+
       /* These are functions specific to this page */
       function emitFoodQuery() {
         console.log('hello!');
@@ -35,9 +40,8 @@
 
       function beginNewMeal() {
         // create meal object/clear out any existing ones
-        document.cookie.newMeal = { foods: [] };
-        console.dir(document.cookie);
-        //document.cookie.newMeal.foods = [];
+        newMeal = { foods: [] };
+        //newMeal.foods = [];
 
         // delete create meal button
         document.getElementById("newMealButton").outerHTML = "";
@@ -73,7 +77,7 @@
 
       function addFoodToMeal(f) {
         // push to the new meal being constructed
-        document.cookie.newMeal.foods.push(f);
+        newMeal.foods.push(f);
         // delete any autocomplete divs
         if(document.getElementById("autocomplete-div")) {
           document.getElementById("autocomplete-div").outerHTML = "";
