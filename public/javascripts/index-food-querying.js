@@ -106,7 +106,7 @@ function setupFoodCreation() {
         <label for="test"><%= vars[i].name %></label>
       </div>
       <div class="input-field col s4">
-        <select>
+        <select id="units-<%= vars[i].id %>">
           <option value="" disabled selected>Choose your option</option>
           <option value="cups">Cups</option>
           <option value="oz">Ounces (oz)</option>
@@ -118,6 +118,8 @@ function setupFoodCreation() {
   <% } %>
 
     <script>$('select').material_select();</script>
+
+    <button onclick="constructFood()">Add Food</button>
     `
   );
 }
@@ -125,6 +127,20 @@ function setupFoodCreation() {
 function finishMeal() {
   console.dir(newMeal);
   socket.emit('_finished_meal', { meal: newMeal });
+}
+
+function constructFood() {
+  var newFood = {
+    "name": $('#foodName').val(),
+    "servings_eaten": $('#servingsEaten').val(),
+    "serving_size": { units: $('#units-servingSize').val(), value: $('#servingSize').val() },
+    "calories": { units: $('#units-calories').val(), value: $('#calories').val() },
+    "fat": { units: $('#units-fat').val(), value: $('#fat').val() },
+    "protein": { units: $('#units-protein').val(), value: $('#protein').val() },
+    "dietary_fiber": { units: $('#units-dietaryFiber').val(), value: $('#dietaryFiber').val() },
+  }
+
+  addFoodToMeal(JSON.stringify(newFood));
 }
 
 function addFoodToMeal(fStr) {
