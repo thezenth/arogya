@@ -82,5 +82,5 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div
-  this.outerHTML = "";
+  this.parentNode.removeChild(this);
 }
