@@ -40,8 +40,8 @@ function finishMeal() {
   socket.emit('_finished_meal', { meal: newMeal });
 }
 
-function addFoodToMeal(f) {
-  console.dir(f);
+function addFoodToMeal(fStr) {
+  var f = JSON.parse(fStr);
   // push to the new meal being constructed
   newMeal.foods.push(f);
   // delete any autocomplete divs
@@ -49,4 +49,36 @@ function addFoodToMeal(f) {
     document.getElementById("autocomplete-div").outerHTML = "";
     delete document.getElementById("autocomplete-div");
   }
+
+  if (!document.getElementById("selectedfoods-div")) {
+    renderPartial("main-div",
+      `<div id="selectedfoods-div" class="row container"></div>`
+    );
+  }
+
+  // here, we just pass the ndbno to reference in the remove function
+  renderPartial("selectedfoods-div",
+    `<div class="col s12">
+      <h2>${f.name}</h2>
+      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
+    </div>`
+  );
+}
+
+function removeFoodFromMeal(dbN) {
+  // loop through all the foods, and find the index of the food with the dbN
+  var found = false;
+  var count = 0;
+  while(!false) {
+    if (newMeal.foods[count].ndbno == dbN) {
+      // then, remove the relevant object
+      newMeal.foods.splice(count, 1);
+      found = true;
+    }
+    count++;
+  }
+
+  // delete parent div
+  this.parent.outerHTML = "";
+  delete this.parent;
 }

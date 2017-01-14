@@ -18,11 +18,11 @@ socket.on('_relevant_foods_returned', function(data) {
     button.className = "waves-effect waves-light btn";
     button.innerHTML = foods[i].name;
     // we set the value of the button (even though this is typically unusued for a button) to store the food object for later
-    // as well, we stringify it to preserve the JSON
+    // as well, we stringify it to preserve the JSON, in the addFoodToMeal function
     button.value = JSON.stringify(foods[i]);
     console.log(button.value);
     button.onclick = function() {
-      addFoodToMeal(JSON.parse(this.value));
+      addFoodToMeal(this.value);
     }
     div.appendChild(button);
   }
@@ -59,7 +59,7 @@ socket.on('_saved_meal_to_db', function(data) {
     renderPartial("main-div",
       `<div class="row">
           <div class="col s4"></div>
-          <div class="col s4 container">
+          <div class="col s4 center-align">
             <button id="newMealButton" onclick="beginNewMeal();" class="waves-effect waves-light btn">
               <i class="material-icons left">create</i>Record
             </button>
