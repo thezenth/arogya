@@ -25,17 +25,9 @@ function beginNewMeal() {
   renderPartial("main-div",
     `<div class="row">
       <div class="col s6">
-        <div class="fixed-action-btn toolbar">
-          <a class="btn-floating btn-large red">
-            <i class="large material-icons">mode_edit</i>
-          </a>
-          <ul>
-            <li class="waves-effect waves-light"><a onclick="setupQuery();"><i class="material-icons">insert_chart</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
-            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
-          </ul>
-        </div>
+        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">search</a>
+        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">create</a>
+        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">redo</a>
       </div>
       <div class="col s6">
         <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
