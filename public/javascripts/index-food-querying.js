@@ -104,7 +104,7 @@ function setupFoodCreation() {
     <% for(var i = 0; i<vars.length; i++) { %>
       <div class="row">
         <div class="input-field col s8">
-          <input id="<%= vars[i].id %>" name="<%= vars[i].id" type="number" class="validate">
+          <input id="<%= vars[i].id %>" name="<%= vars[i].id" %> type="number" class="validate">
           <label for="<%= vars[i].id %>"><%= vars[i].name %></label>
         </div>
         <div class="input-field col s4">
@@ -118,13 +118,6 @@ function setupFoodCreation() {
         </div>
       </div>
     <% } %>
-
-    <div class="row">
-      <input id="servingSize" name="servingSize" type="text">
-      <!-- select menu for units of serving size -->
-
-      </div>
-    </div>
     `
   ), { vars: [
     {id: "servingSize", name: "Serving Size"},
