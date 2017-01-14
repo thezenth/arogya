@@ -25,15 +25,15 @@ function beginNewMeal() {
   renderPartial("main-div",
     `<div class="row">
       <div class="col s6">
-        <div class="fixed-action-btn horizontal click-to-toggle" style="position: absolute; display: inline-block;">
+        <div class="fixed-action-btn toolbar">
           <a class="btn-floating btn-large red">
-            <i class="material-icons">menu</i>
+            <i class="large material-icons">mode_edit</i>
           </a>
           <ul>
-            <li><a class="btn-floating red" onclick="setupQuery();"><i class="material-icons">insert_chart</i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+            <li class="waves-effect waves-light"><a onclick="setupQuery();"><i class="material-icons">insert_chart</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
           </ul>
         </div>
       </div>
