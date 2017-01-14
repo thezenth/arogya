@@ -127,11 +127,11 @@ function setupFoodCreation() {
     </div>
     `
   ), { vars: [
-    {"servingSize", "Serving Size"},
-    {"calories", "Calories"},
-    {"fat", "Fat"},
-    {"protein", "Protein"},
-    {"dietaryFiber", "Dietary Fiber"}
+    {id: "servingSize", name: "Serving Size"},
+    {id: "calories", name: "Calories"},
+    {id: "fat", name: "Fat"},
+    {id: "protein", name: "Protein"},
+    {id: "dietaryFiber", name: "Dietary Fiber"}
   ] };
 }
 
