@@ -97,7 +97,7 @@ socket.on('_return_food_exist_check', function(data) {
   if (data.exists) {
     // display some sort of message
     var stringy = JSON.stringify(data.food);
-    var funcRef = "addConstructedFoodToMeal(" + stringy + ");"
+    var funcRef = "addConstructedFoodToMeal('" + stringy + "');"
     console.log(funcRef);
     renderPartial("food-addition-div",
       `
