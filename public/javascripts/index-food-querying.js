@@ -82,5 +82,5 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div and evrything in it
-  $( this ).parent().remove();
+  $( this ).closest('div').remove();
 }
