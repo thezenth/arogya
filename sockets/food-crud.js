@@ -24,7 +24,7 @@ module.exports = function(socket) {
         console.error(err);
       } else {
         console.log(body);
-        socket.emit('_saved_food_to_db', null);
+        //socket.emit('_saved_food_to_db', null);
       }
     });
   });
