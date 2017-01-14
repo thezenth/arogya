@@ -125,6 +125,8 @@ function setupFoodCreation() {
       </div>
     </div>
   <% } %>
+
+    <script>$('select').material_select();</script>
     `
   );
 }
