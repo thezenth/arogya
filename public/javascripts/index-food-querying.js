@@ -81,6 +81,7 @@ function addFoodToMeal(fStr) {
     }
 
     // delete parent div
+    console.log($(this));
     $( this ).closest('.col s12').empty();
     $( this ).closest('.col s12').remove();
   });
