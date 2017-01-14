@@ -44,6 +44,7 @@ function addFoodToMeal(fStr) {
   var f = JSON.parse(fStr);
   // push to the new meal being constructed
   newMeal.foods.push(f);
+  console.dir(newMeal.foods);
   // delete any autocomplete divs
   if(document.getElementById("autocomplete-div")) {
     document.getElementById("autocomplete-div").outerHTML = "";
@@ -59,7 +60,7 @@ function addFoodToMeal(fStr) {
   // here, we just pass the ndbno to reference in the remove function
   renderPartial("selectedfoods-div",
     `<div class="col s12">
-      <h2>${f.name}</h2>
+      <h3>${f.name}</h3>
       <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
     </div>`
   );
