@@ -60,9 +60,9 @@ function addFoodToMeal(fStr) {
 
   // here, we just pass the ndbno to reference in the remove function
   renderPartial("selectedfoods-div",
-    `<div class="col s12">
+    `<div id="delete-${f.ndbno}" class="col s12">
       <h3>${f.name}</h3>
-      <a class="btn-floating btn-large waves-effect waves-light red" id="delete-${f.ndbno}" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
+      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
     </div>`
   );
 }
@@ -82,5 +82,5 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div
-  document.getElementById("delete-" + dbN).parentNode.removeChild(document.getElementById("delete-" + dbN);
+  document.getElementById("delete-" + dbN).parentNode.removeChild(document.getElementById("delete-" + dbN));
 }
