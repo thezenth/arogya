@@ -3,3 +3,9 @@ function renderPartial(parentId, partial) {
     ejs.render(partial)
   );
 }
+
+function renderPartialWithData(parentId, partial, data) {
+  $('#' + parentId).append(
+    ejs.render(partial, data)
+  );
+}

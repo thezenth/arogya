@@ -26,7 +26,7 @@ function beginNewMeal() {
   renderPartial("main-div",
     `<div class="row">
       <div class="col s2">
-        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">search</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
       </div>
       <div class="col s2">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">create</i></a>
@@ -66,6 +66,73 @@ function setupQuery() {
   queryInput.type = "text";
   queryInput.onkeyup = function(){ emitFoodQuery(); };
   document.getElementById("main-div").appendChild(queryInput);*/
+}
+
+// setups the basic create food form
+function setupFoodCreation() {
+  document.getElementById("food-addition-div").innerHTML = "";
+
+  /* vars array is made up of objects such that:
+      { id, name }
+  */
+  renderPartialWithData("food-addition-div",
+    `
+    <!-- name -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="foodName" name="foodName" type="text">
+        <label for="foodName">Name</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <input id="amountEaten" name="amountEaten" type="number">
+        <label for="amountEaten">Amount Eaten</label>
+      </div>
+      <div class="input-field col s4">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="cups">Cups</option>
+          <option value="oz">Ounces (oz)</option>
+          <option value="g">Grams (g)</option>
+        </select>
+        <label>Units</label>
+      </div>
+    </div>
+
+    <% for(var i = 0; i<vars.length; i++) { %>
+      <div class="row">
+        <div class="input-field col s8">
+          <input id="<%= vars[i].id %>" name="<%= vars[i].id" type="number" class="validate">
+          <label for="<%= vars[i].id %>"><%= vars[i].name %></label>
+        </div>
+        <div class="input-field col s4">
+          <select>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="cups">Cups</option>
+            <option value="oz">Ounces (oz)</option>
+            <option value="g">Grams (g)</option>
+          </select>
+          <label>Units</label>
+        </div>
+      </div>
+    <% } %>
+
+    <div class="row">
+      <input id="servingSize" name="servingSize" type="text">
+      <!-- select menu for units of serving size -->
+
+      </div>
+    </div>
+    `
+  ), { vars: [
+    {"servingSize", "Serving Size"},
+    {"calories", "Calories"},
+    {"fat", "Fat"},
+    {"protein", "Protein"},
+    {"dietaryFiber", "Dietary Fiber"}
+  ] };
 }
 
 function finishMeal() {
