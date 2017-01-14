@@ -1,0 +1,28 @@
+### THIS IS A GENERAL SCHEMA/PERSONAL NOTES - DO NOT ATTEMPT TO PARSE ###
+
+# MEAL
+{
+  "timestamp_of_meal": "", // timestamp-with-timezone
+  "timestamp_of_recording": "", // timestamp-with-timezone
+  "foods": [
+    {
+      "name": "",
+      "serving_size": { "units":"", "value":"" },
+      "amount_eaten": { "units":"", "value":"" },
+      "calories": { "units":"", "value":"" }, // id 208
+      "fat": { "units":"", "value":"" }, // id 204
+      "protein": { "units":"", "value":"" }, // id 203
+      "dietary_fiber": { "units":"", "value":"" }, // id 291
+      "total_sugars": { "units":"", "value":"" }, // id 269
+      "glucose": { "units":"", "value":"" }, // id 211
+      "calcium": { "units":"", "value":"" }, // id 301
+      "iron": { "units":"", "value":"" }, // id 303
+      "sodium": { "units":"", "value":"" }, // id 307
+      "vitamin_c": { "units":"", "value":"" }, // id 401
+      "vitamin_a": { "units":"", "value":"" }, // id 337
+      "vitamin_b12": { "units":"", "value":"" }, // id 418
+      "aspartic_acid": { "units":"", "value":"" }, // id 514
+      "glutamic_acid": { "units":"", "value":"" } // id 515
+    }
+  ]
+}
