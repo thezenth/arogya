@@ -82,6 +82,7 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div
+  this.parent.innerHTML = "";
   this.parent.outerHTML = "";
   delete this.parent;
 }
