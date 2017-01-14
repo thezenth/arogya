@@ -75,7 +75,7 @@ function setupFoodCreation() {
   /* vars array is made up of objects such that:
       { id, name }
   */
-  renderPartialWithData("food-addition-div",
+  renderPartial("food-addition-div",
     `
     <div class="row">
       <div class="input-field col s12">
@@ -100,6 +100,14 @@ function setupFoodCreation() {
       </div>
     </div>
 
+    <% { vars: [
+      {id: "servingSize", name: "Serving Size"},
+      {id: "calories", name: "Calories"},
+      {id: "fat", name: "Fat"},
+      {id: "protein", name: "Protein"},
+      {id: "dietaryFiber", name: "Dietary Fiber"}
+    ] }; %>
+
     <% for(var i = 0; i<vars.length; i++) { %>
     <div class="row">
       <div class="input-field col s8">
@@ -118,13 +126,7 @@ function setupFoodCreation() {
     </div>
   <% } %>
     `
-  ), { vars: [
-    {id: "servingSize", name: "Serving Size"},
-    {id: "calories", name: "Calories"},
-    {id: "fat", name: "Fat"},
-    {id: "protein", name: "Protein"},
-    {id: "dietaryFiber", name: "Dietary Fiber"}
-  ] };
+  );
 }
 
 function finishMeal() {
