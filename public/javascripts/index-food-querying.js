@@ -81,8 +81,6 @@ function removeFoodFromMeal(dbN) {
     count++;
   }
 
-  // delete parent div
-  this.parent.innerHTML = "";
-  this.parent.outerHTML = "";
-  delete this.parent;
+  // delete parent div and evrything in it
+  this.parent.remove();
 }
