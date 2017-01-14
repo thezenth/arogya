@@ -8,7 +8,7 @@
     {
       "name": "",
       "serving_size": { "units":"", "value":"" },
-      "amount_eaten": { "units":"", "value":"" },
+      "servings_eaten": "",
       "calories": { "units":"", "value":"" }, // id 208
       "fat": { "units":"", "value":"" }, // id 204
       "protein": { "units":"", "value":"" }, // id 203

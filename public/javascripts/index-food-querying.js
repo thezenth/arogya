@@ -131,16 +131,62 @@ function finishMeal() {
 
 function constructFood() {
   var newFood = {
-    "name": $('#foodName').val(),
-    "servings_eaten": $('#servingsEaten').val(),
-    "serving_size": { units: $('#units-servingSize').val(), value: $('#servingSize').val() },
-    "calories": { units: $('#units-calories').val(), value: $('#calories').val() },
-    "fat": { units: $('#units-fat').val(), value: $('#fat').val() },
-    "protein": { units: $('#units-protein').val(), value: $('#protein').val() },
-    "dietary_fiber": { units: $('#units-dietaryFiber').val(), value: $('#dietaryFiber').val() },
+    name: $('#foodName').val(),
+    serving_eaten: $('#servingsEaten').val(),
+    serving_size: { units: $('#units-servingSize').val(), value: $('#servingSize').val() },
+    calories: { units: $('#units-calories').val(), value: $('#calories').val() },
+    fat: { units: $('#units-fat').val(), value: $('#fat').val() },
+    protein: { units: $('#units-protein').val(), value: $('#protein').val() },
+    dietary_fiber: { units: $('#units-dietaryFiber').val(), value: $('#dietaryFiber').val() }
   }
 
-  addFoodToMeal(JSON.stringify(newFood));
+  // check if the food exists, based upon the name
+  socket.emit('_check_if_food_exists', { food: newFood });
+
+  //addFoodToMeal(JSON.stringify(newFood));
+}
+
+function updatedSelectedFoods(f, id) {
+  if (!document.getElementById("selectedfoods-div")) {
+    renderPartial("main-div",
+      `<div id="selectedfoods-div" class="row container"></div>`
+    );
+  }
+
+  // here, we just pass the ndbno to reference in the remove function
+  renderPartial("selectedfoods-div",
+    `<div id="delete-${ident}" class="col s12">
+      <h3>${f.name}</h3>
+      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeConstructuedFoodFromMeal(${id});"><i class="material-icons">delete</i></a>
+    </div>`
+  );
+}
+
+function addConstructedFoodToMeal(f) {
+  var food = JSON.parse(f);
+  newMeal.foods.push(food);
+
+  updatedSelectedFoods(food, food.name);
+
+  // add to db
+  socket.emit('_save_food_to_db', { food: food });
+}
+
+function removeConstructuedFoodFromMeal(id) {
+  var found = false;
+  var count = 0;
+  //console.dir(newMeal.foods);
+  while(!found) {
+    if (newMeal.foods[count].name == id) {
+      // then, remove the relevant object
+      newMeal.foods.splice(count, 1);
+      found = true;
+    }
+    count++;
+  }
+
+  // delete parent div
+  document.getElementById("delete-" + id).parentNode.removeChild(document.getElementById("delete-" + id));
 }
 
 function addFoodToMeal(fStr) {

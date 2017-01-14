@@ -87,3 +87,33 @@ socket.on('_saved_meal_to_db', function(data) {
     */
   }, time)
 });
+
+function deleteExistsMsg() {
+  document.getElementById("food-exist-msg").innerHTML = "";
+  document.getElementById("food-exist-msg").outerHTML = "";
+}
+
+socket.on('_return_food_exist_check', function(data) {
+  if (data.exists) {
+    // display some sort of message
+    renderPartial("food-addition-div",
+      `
+      <div id="food-exist-msg">
+        <p>You've already told me about a food with the same name; do you still want to save it?</p>
+        </button onclick="addConstructedFoodToMeal(${JSON.stringify(data.food)});">Yes</button>
+        </button onclick="deleteExistsMsg();">No</button>
+      </div>
+      `
+    );
+
+    //socket.emit('_save_food_to_db', { food: data.food });
+  } else {
+    socket.emit('_save_food_to_db', { food: data.food });
+  }
+});
+
+socket.on('_saved_food_to_db', function (data) {
+  // clear out the food addition space
+  document.getElementById("food-addition-div").innerHTML = "";
+
+})
