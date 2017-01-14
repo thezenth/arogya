@@ -44,6 +44,7 @@ function addFoodToMeal(fStr) {
   var f = JSON.parse(fStr);
   // push to the new meal being constructed
   newMeal.foods.push(f);
+  console.dir(f);
   console.dir(newMeal.foods);
   // delete any autocomplete divs
   if(document.getElementById("autocomplete-div")) {
