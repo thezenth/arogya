@@ -97,11 +97,12 @@ socket.on('_return_food_exist_check', function(data) {
   if (data.exists) {
     // display some sort of message
     var stringy = JSON.stringify(data.food);
+    var funcRef = "addConstructedFoodToMeal(" + stringy + ");"
     renderPartial("food-addition-div",
       `
       <div id="food-exist-msg">
         <p>You've already told me about a food with the same name; do you still want to save it?</p>
-        <button onclick="addConstructedFoodToMeal(${stringy});">Yes</button>
+        <button onclick="${funcRef}">Yes</button>
         <button onclick="deleteExistsMsg();">No</button>
       </div>
       `
