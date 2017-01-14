@@ -163,6 +163,7 @@ function updatedSelectedFoods(f, id) {
 }
 
 function addConstructedFoodToMeal(f) {
+  console.log(f);
   var food = JSON.parse(f);
   newMeal.foods.push(food);
 
