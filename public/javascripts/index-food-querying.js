@@ -24,8 +24,8 @@ function beginNewMeal() {
   // create horizontal finishMealButton
   renderPartial("main-div",
     `<div class="row">
-      <div class="col s6">
-        <div class="fixed-action-btn horizontal click-to-toggle left-align">
+      <div class="col s6" style="position: absolute; display: inline-block;">
+        <div class="fixed-action-btn horizontal click-to-toggle">
           <a class="btn-floating btn-large red">
             <i class="material-icons">menu</i>
           </a>
