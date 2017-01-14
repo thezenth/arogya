@@ -21,18 +21,53 @@ function beginNewMeal() {
   document.getElementById("newMealButton").outerHTML = "";
   delete document.getElementById("newMealButton");
 
+  // create horizontal finishMealButton
+  renderPartial("main-div",
+    `<div class="row">
+      <div class="col s6">
+        <div class="fixed-action-btn horizontal click-to-toggle left-align">
+          <a class="btn-floating btn-large red">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul>
+            <li><a class="btn-floating red" onclick="setupQuery();"><i class="material-icons">insert_chart</i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col s6">
+        <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
+      </div>
+      <div id="food-addition-div" class="col s12">
+      </div>
+    </div>`
+  );
+
   // instantiate other html stuff
-  var queryInput = document.createElement("input");
+
+  //var finishMealButton = document.createElement("button");
+  //finishMealButton.innerHTML = "Done?";
+  //finishMealButton.onclick = function(){ finishMeal(); };
+  //document.getElementById("main-div").appendChild(finishMealButton);
+}
+
+// this setupQuery method, and the other horizontal fab button methods, are setup such that when one is clicked, the food addition space is cleared for it
+function setupQuery() {
+  // clear out food addition space
+  document.getElementById("food-addition-div").innerHTML = "";
+  // render this inside the food addition space
+  renderPartial("food-addition-div",
+    `<input id="foodQuery" name="foodQuery" type="text" onkeyup="emitFoodQuery();">`
+  );
+
+  /*var queryInput = document.createElement("input");
   queryInput.id = "foodQuery";
   queryInput.name = "foodQuery";
   queryInput.type = "text";
   queryInput.onkeyup = function(){ emitFoodQuery(); };
-  document.getElementById("main-div").appendChild(queryInput);
-
-  var finishMealButton = document.createElement("button");
-  finishMealButton.innerHTML = "Done?";
-  finishMealButton.onclick = function(){ finishMeal(); };
-  document.getElementById("main-div").appendChild(finishMealButton);
+  document.getElementById("main-div").appendChild(queryInput);*/
 }
 
 function finishMeal() {
