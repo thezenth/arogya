@@ -29,7 +29,7 @@ function beginNewMeal() {
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
       </div>
       <div class="col s2">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">create</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupFoodCreation();"><i class="material-icons">create</i></a>
       </div>
       <div class="col s2">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
