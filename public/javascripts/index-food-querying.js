@@ -24,9 +24,13 @@ function beginNewMeal() {
   // create horizontal finishMealButton
   renderPartial("main-div",
     `<div class="row">
-      <div class="col s6">
+      <div class="col s2">
         <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">search</a>
+      </div>
+      <div class="col s2">
         <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">create</a>
+      </div>
+      <div class="col s2">
         <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">redo</a>
       </div>
       <div class="col s6">
