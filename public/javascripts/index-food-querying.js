@@ -62,29 +62,9 @@ function addFoodToMeal(fStr) {
   renderPartial("selectedfoods-div",
     `<div class="col s12">
       <h3>${f.name}</h3>
-      <a class="btn-floating btn-large waves-effect waves-light red" id="delete-${f.ndbno})"><i class="material-icons">delete</i></a>
+      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
     </div>`
   );
-
-  $('#delete-' + f.ndbno).click(function() {
-    // loop through all the foods, and find the index of the food with the dbN
-    var found = false;
-    var count = 0;
-    //console.dir(newMeal.foods);
-    while(!found) {
-      if (newMeal.foods[count].ndbno == dbN) {
-        // then, remove the relevant object
-        newMeal.foods.splice(count, 1);
-        found = true;
-      }
-      count++;
-    }
-
-    // delete parent div
-    console.log($(this));
-    $( this ).closest('.col s12').empty();
-    $( this ).closest('.col s12').remove();
-  });
 }
 
 function removeFoodFromMeal(dbN) {
@@ -102,6 +82,5 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div
-  $( this ).closest('.col s12').empty();
-  $( this ).closest('.col s12').remove();
+  this.outerHTML = "";
 }
