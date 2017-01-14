@@ -26,13 +26,13 @@ function beginNewMeal() {
   renderPartial("main-div",
     `<div class="row">
       <div class="col s2">
-        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">search</a>
+        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupQuery();"><i class="material-icons">search</i></a>
       </div>
       <div class="col s2">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">create</a>
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">create</i></a>
       </div>
       <div class="col s2">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</a>
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
       </div>
       <div class="col s6">
         <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
