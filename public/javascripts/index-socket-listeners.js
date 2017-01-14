@@ -20,7 +20,7 @@ socket.on('_relevant_foods_returned', function(data) {
     // we set the value of the button (even though this is typically unusued for a button) to store the food object for later
     // as well, we stringify it to preserve the JSON, in the addFoodToMeal function
     button.value = JSON.stringify(foods[i]);
-    console.log(button.value);
+    //console.log(button.value);
     button.onclick = function() {
       addFoodToMeal(this.value);
     }

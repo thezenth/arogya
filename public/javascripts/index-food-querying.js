@@ -69,6 +69,7 @@ function removeFoodFromMeal(dbN) {
   // loop through all the foods, and find the index of the food with the dbN
   var found = false;
   var count = 0;
+  console.dir(newMeal.foods);
   while(!false) {
     if (newMeal.foods[count].ndbno == dbN) {
       // then, remove the relevant object
