@@ -36,8 +36,9 @@ function beginNewMeal() {
       <div class="col s6">
         <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
       </div>
-      <div id="food-addition-div" class="col s12">
-      </div>
+    </div>
+    <div class="row">
+      <div id="food-addition-div" class="col s12"></div>
     </div>`
   );
 
