@@ -100,7 +100,7 @@ function setupFoodCreation() {
       </div>
     </div>
 
-    <% { vars: [
+    <% var vars = [
       {id: "servingSize", name: "Serving Size"},
       {id: "calories", name: "Calories"},
       {id: "fat", name: "Fat"},
