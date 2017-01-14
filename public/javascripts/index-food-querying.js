@@ -18,8 +18,9 @@ function beginNewMeal() {
   //newMeal.foods = [];
 
   // delete create meal button
-  document.getElementById("newMealButton").outerHTML = "";
-  delete document.getElementById("newMealButton");
+  document.getElementById("main-div").innerHTML = "";
+  //document.getElementById("newMealButton").outerHTML = "";
+  //delete document.getElementById("newMealButton");
 
   // create horizontal finishMealButton
   renderPartial("main-div",
