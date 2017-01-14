@@ -44,8 +44,8 @@ function addFoodToMeal(fStr) {
   var f = JSON.parse(fStr);
   // push to the new meal being constructed
   newMeal.foods.push(f);
-  console.dir(f);
-  console.dir(newMeal.foods);
+  //console.dir(f);
+  //console.dir(newMeal.foods);
   // delete any autocomplete divs
   if(document.getElementById("autocomplete-div")) {
     document.getElementById("autocomplete-div").outerHTML = "";
@@ -71,8 +71,8 @@ function removeFoodFromMeal(dbN) {
   // loop through all the foods, and find the index of the food with the dbN
   var found = false;
   var count = 0;
-  console.dir(newMeal.foods);
-  while(!false) {
+  //console.dir(newMeal.foods);
+  while(!found) {
     if (newMeal.foods[count].ndbno == dbN) {
       // then, remove the relevant object
       newMeal.foods.splice(count, 1);
