@@ -85,18 +85,9 @@ function setupFoodCreation() {
     </div>
 
     <div class="row">
-      <div class="input-field col s8">
-        <input id="amountEaten" name="amountEaten" type="number">
-        <label for="amountEaten">Amount Eaten</label>
-      </div>
-      <div class="input-field col s4">
-        <select>
-          <option value="" disabled selected>Choose your option</option>
-          <option value="cups">Cups</option>
-          <option value="oz">Ounces (oz)</option>
-          <option value="g">Grams (g)</option>
-        </select>
-        <label>Units</label>
+      <div class="input-field col s12">
+        <input id="servingsEaten" name="servingsEaten" type="number">
+        <label for="servingsEaten">Servings Eaten</label>
       </div>
     </div>
 
