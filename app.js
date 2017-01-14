@@ -46,7 +46,7 @@ var io = require('socket.io')(server);
 // some socket.io middleware
 io.use(function(socket, next) {
   console.log("Heard an emit");
-  console.dir(socket.request);
+  //console.dir(socket.request);
   next();
 });
 
