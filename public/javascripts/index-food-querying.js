@@ -106,7 +106,7 @@ function setupFoodCreation() {
       {id: "fat", name: "Fat"},
       {id: "protein", name: "Protein"},
       {id: "dietaryFiber", name: "Dietary Fiber"}
-    ] }; %>
+    ] %>
 
     <% for(var i = 0; i<vars.length; i++) { %>
     <div class="row">
