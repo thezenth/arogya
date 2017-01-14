@@ -62,7 +62,7 @@ function addFoodToMeal(fStr) {
   renderPartial("selectedfoods-div",
     `<div class="col s12">
       <h3>${f.name}</h3>
-      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
+      <a class="btn-floating btn-large waves-effect waves-light red" id="delete-${f.ndbno}" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
     </div>`
   );
 }
@@ -82,6 +82,5 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div
-  console.dir(this);
-  this.parentNode.removeChild(this);
+  document.getElementById("delete-" + dbN).parentNode.removeChild(this);
 }
