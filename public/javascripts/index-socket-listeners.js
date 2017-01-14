@@ -27,7 +27,7 @@ socket.on('_relevant_foods_returned', function(data) {
     div.appendChild(button);
   }
 
-  document.getElementById("main-div").appendChild(div);
+  document.getElementById("food-addition-div").appendChild(div);
 });
 
 socket.on('_relevant_foods_not_found', function(data) {
