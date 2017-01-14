@@ -85,7 +85,7 @@ socket.on('_saved_meal_to_db', function(data) {
 
     document.getElementById("main-div").appendChild(newMealButton);
     */
-  }, time)
+  }, time);
 });
 
 function deleteExistsMsg() {
@@ -115,5 +115,4 @@ socket.on('_return_food_exist_check', function(data) {
 socket.on('_saved_food_to_db', function (data) {
   // clear out the food addition space
   document.getElementById("food-addition-div").innerHTML = "";
-
-})
+});
