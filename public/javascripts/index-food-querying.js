@@ -82,5 +82,5 @@ function removeFoodFromMeal(dbN) {
   }
 
   // delete parent div and evrything in it
-  $('#cont-' + dbN).remove();
+  $(`#cont-${dbN}`).remove();
 }
