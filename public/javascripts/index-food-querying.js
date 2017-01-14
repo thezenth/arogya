@@ -78,18 +78,18 @@ function setupFoodCreation() {
   renderPartial("food-addition-div",
     `
     <div class="row">
-      <div class="input-field col s6">
+      <div class="input-field col s12">
         <input id="foodName" name="foodName" type="text">
         <label for="foodName">Name</label>
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s4">
+      <div class="input-field col s8">
         <input id="amountEaten" name="amountEaten" type="number">
         <label for="amountEaten">Amount Eaten</label>
       </div>
-      <div class="input-field col s8">
+      <div class="input-field col s4">
         <select>
           <option value="" disabled selected>Choose your option</option>
           <option value="cups">Cups</option>
@@ -110,11 +110,11 @@ function setupFoodCreation() {
 
     <% for(var i = 0; i<vars.length; i++) { %>
     <div class="row">
-      <div class="input-field col s4">
+      <div class="input-field col s8">
         <input id="<%= vars[i].id %>" name="<%= vars[i].id%>" type="number" class="validate">
         <label for="test"><%= vars[i].name %></label>
       </div>
-      <div class="input-field col s8">
+      <div class="input-field col s4">
         <select>
           <option value="" disabled selected>Choose your option</option>
           <option value="cups">Cups</option>
