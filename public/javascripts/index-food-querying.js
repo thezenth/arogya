@@ -155,7 +155,7 @@ function updatedSelectedFoods(f, id) {
 
   // here, we just pass the ndbno to reference in the remove function
   renderPartial("selectedfoods-div",
-    `<div id="delete-${ident}" class="col s12">
+    `<div id="delete-${id}" class="col s12">
       <h3>${f.name}</h3>
       <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeConstructuedFoodFromMeal(${id});"><i class="material-icons">delete</i></a>
     </div>`
