@@ -103,12 +103,11 @@ socket.on('_return_food_exist_check', function(data) {
       `
       <div id="food-exist-msg">
         <p>You've already told me about a food with the same name; do you still want to save it?</p>
-        <button onclick="addConstructedFoodToMeal(${JSON.stringify(data.food)});">Yes</button>
+        <button onclick='addConstructedFoodToMeal(${JSON.stringify(data.food)});'>Yes</button>
         <button onclick="deleteExistsMsg();">No</button>
       </div>
       `
     );
-
     //socket.emit('_save_food_to_db', { food: data.food });
   } else {
     addConstructedFoodToMeal(data.food);
