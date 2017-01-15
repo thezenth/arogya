@@ -9,11 +9,11 @@ module.exports = function(socket) {
       console.dir(data.food);
       if (err) {
         console.log("No document of name " + data.food.name + " was found.");
-        socket.emit('_return_food_exist_check', { exists: false, food: data.food }); // make sure to pass along the food to the listener
+        socket.emit('_return_food_exist_check', { exists: false, food: data.food, forMeal: data.forMeal }); // make sure to pass along the food to the listener
       } else {
         console.log("Doucment with name " + data.food.name + " was found.");
         console.dir(body);
-        socket.emit('_return_food_exist_check', { exists: true, food: data.food }); // make sure to pass along the food to the listener
+        socket.emit('_return_food_exist_check', { exists: true, food: data.food, forMeal: data.forMeal }); // make sure to pass along the food to the listener
       }
     });
   });

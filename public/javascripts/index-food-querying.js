@@ -130,9 +130,8 @@ function finishMeal() {
 }
 
 function constructFood() {
-  var newFood = {
+  var dbFood = {
     name: $('#foodName').val(),
-    serving_eaten: $('#servingsEaten').val(),
     serving_size: { units: $('#units-servingSize').val(), value: $('#servingSize').val() },
     calories: { units: $('#units-calories').val(), value: $('#calories').val() },
     fat: { units: $('#units-fat').val(), value: $('#fat').val() },
@@ -140,8 +139,14 @@ function constructFood() {
     dietary_fiber: { units: $('#units-dietaryFiber').val(), value: $('#dietaryFiber').val() }
   }
 
+  var inMeal = {
+    name: dbFood.name,
+    servings_eaten: $('#servingsEaten').val(),
+  }
+
   // check if the food exists, based upon the name
-  socket.emit('_check_if_food_exists', { food: newFood });
+  // forMeal is the object we want to save with our meal 
+  socket.emit('_check_if_food_exists', { food: dbFood, forMeal: inMeal });
 
   //addFoodToMeal(JSON.stringify(newFood));
 }
