@@ -100,13 +100,7 @@ socket.on('_return_food_exist_check', function(data) {
     //var funcRef = "addConstructedFoodToMeal('" + stringy + "');"
   //  console.log(funcRef);
     renderPartial("food-addition-div",
-      `
-      <div id="food-exist-msg">
-        <p>You've already told me about a food with the same name; do you still want to save it?</p>
-        <button onclick='addConstructedFoodToMeal(${JSON.stringify(data.food)},${JSON.stringify(data.forMeal)});'>Yes</button>
-        <button onclick="deleteExistsMsg();">No</button>
-      </div>
-      `
+      existingFoodMsg(data.food, data.forMeal);
     );
     //socket.emit('_save_food_to_db', { food: data.food });
   } else {
