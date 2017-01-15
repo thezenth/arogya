@@ -6,7 +6,7 @@ var dietData = require('../db.js').diet_data;
 module.exports = function(socket) {
   socket.on('_finished_meal', function(data) {
     var newMeal = data.meal;
-    dietDta.insert(newMeal, function(err, body) {
+    dietData.insert(newMeal, function(err, body) {
       if (err) {
         console.error(err);
       } else {
