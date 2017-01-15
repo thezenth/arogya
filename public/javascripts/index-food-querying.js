@@ -28,7 +28,7 @@ function beginNewMeal() {
     <div class="row">
       <h2>Record your meal</h2>
       <div class="input-field col s12">
-        <input id="timestampOccured" name="timestampOccured" type="datetime" class="validate">
+        <input id="timestampOccured" name="timestampOccured" type="date" class="datepicker">
         <label for="timestampOccured">Meal Eaten</label>
       </div>
       <div class="input-field col s12">
@@ -59,7 +59,13 @@ function beginNewMeal() {
     </div>
     <div class="row">
       <div id="food-addition-div" class="col s12"></div>
-    </div>`
+    </div>
+
+    <!-- This is called to make the select/option menus work -->
+    <script>$('select').material_select();</script>
+    <!-- This is called so that the datepicker works -->
+    <script>$('.datepicker').pickadate();</script>
+    `
   );
 
   // instantiate other html stuff
