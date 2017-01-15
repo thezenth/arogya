@@ -195,23 +195,28 @@ function updatedSelectedFoods(f, id) {
   );
 }
 
-function addConstructedFoodToMeal(f) {
-  console.log(f);
+function addConstructedFoodToMeal(foodDbObj, mealFoodObj) {
 
-  // can now handle objects or strings!
-  var food = f;
-  if (f !== null) {
-    if (typeof f === 'string') {
-      food = JSON.parse(f);
+  var toMeal = mealFoodObj;
+  if (toMeal !== null) {
+    if (typeof toMeal === 'string') {
+      toMeal = JSON.parse(toMeal);
     }
   }
 
-  newMeal.foods.push(food);
+  var toDb = foodDbObj;
+  if (toDb !== null) {
+    if (typeof toDb === 'string') {
+      toDb = JSON.parse(toDb);
+    }
+  }
 
-  updatedSelectedFoods(food, food.name);
+  newMeal.foods.push(toMeal);
+
+  updatedSelectedFoods(toDb, toDb.name);
 
   // add to db
-  socket.emit('_save_food_to_db', { food: food });
+  socket.emit('_save_food_to_db', { food: toDb });
 }
 
 function removeConstructuedFoodFromMeal(id) {
