@@ -164,7 +164,15 @@ function updatedSelectedFoods(f, id) {
 
 function addConstructedFoodToMeal(f) {
   console.log(f);
-  var food = JSON.parse(f);
+
+  // can now handle objects or strings!
+  var food = f;
+  if (f !== null) {
+    if (typeof f === 'string') {
+      food = JSON.parse(f);
+    }
+  }
+
   newMeal.foods.push(food);
 
   updatedSelectedFoods(food, food.name);
