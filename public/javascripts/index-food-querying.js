@@ -14,7 +14,7 @@ function emitFoodQuery() {
 
 function beginNewMeal() {
   // create meal object/clear out any existing ones
-  newMeal = { foods: [] };
+  newMeal = { timestamp_of_meal:"", timestamp_of_recording:"", meal_type: "", foods: [] };
   //newMeal.foods = [];
 
   // delete create meal button
@@ -24,17 +24,36 @@ function beginNewMeal() {
 
   // create horizontal finishMealButton
   renderPartial("main-div",
-    `<div class="row">
-      <div class="col s2">
+    `
+    <div class="row">
+      <h2>Record your meal</h2>
+      <div class="input-field col s12">
+        <input id="timestampOccured" name="timestampOccured" type="datetime" class="validate">
+        <label for="timestampOccured">Meal Eaten</label>
+      </div>
+      <div class="input-field col s12">
+        <select id="mealType">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+        <label>Units</label>
+      </div>
+    </div>
+    <div class="row">
+      <h3>Add a food</h3>
+      <div class="col s2 center-align">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
       </div>
-      <div class="col s2">
+      <div class="col s2 center-align">
         <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupFoodCreation();"><i class="material-icons">create</i></a>
       </div>
-      <div class="col s2">
+      <div class="col s2 center-align">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
       </div>
-      <div class="col s6">
+      <div class="col s6 center-align">
         <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
       </div>
     </div>
@@ -125,7 +144,10 @@ function setupFoodCreation() {
 }
 
 function finishMeal() {
-  console.dir(newMeal);
+  //console.dir(newMeal);
+  newMeal.timestamp_of_meal = $('#timestampOccured').val()
+  newMeal.timestamp_of_recording = (new Date()).toUTCString();
+  newMeal.meal_type = $('#mealType').val();
   socket.emit('_finished_meal', { meal: newMeal });
 }
 
@@ -145,7 +167,7 @@ function constructFood() {
   }
 
   // check if the food exists, based upon the name
-  // forMeal is the object we want to save with our meal 
+  // forMeal is the object we want to save with our meal
   socket.emit('_check_if_food_exists', { food: dbFood, forMeal: inMeal });
 
   //addFoodToMeal(JSON.stringify(newFood));

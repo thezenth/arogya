@@ -4,6 +4,7 @@
 {
   "timestamp_of_meal": "", // timestamp-with-timezone
   "timestamp_of_recording": "", // timestamp-with-timezone
+  meal_type: "", // string, either breakfast, lunch, dinner, or snack
   "foods": [
     {
       "name": "",
