@@ -100,7 +100,7 @@ socket.on('_return_food_exist_check', function(data) {
     //var funcRef = "addConstructedFoodToMeal('" + stringy + "');"
   //  console.log(funcRef);
     renderPartial("food-addition-div",
-      existingFoodMsg(data.food, data.forMeal);
+      existingFoodMsg(data.food, data.forMeal)
     );
     //socket.emit('_save_food_to_db', { food: data.food });
   } else {
