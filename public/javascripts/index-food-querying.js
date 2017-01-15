@@ -157,7 +157,7 @@ function updatedSelectedFoods(f, id) {
   renderPartial("selectedfoods-div",
     `<div id="delete-${id}" class="col s12">
       <h3>${f.name}</h3>
-      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeConstructuedFoodFromMeal(${id});"><i class="material-icons">delete</i></a>
+      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeConstructuedFoodFromMeal('${id}');"><i class="material-icons">delete</i></a>
     </div>`
   );
 }
