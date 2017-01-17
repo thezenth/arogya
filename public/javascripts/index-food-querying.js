@@ -72,7 +72,19 @@ function setupCreatedFoodSearch() {
 
 function finishMeal() {
   //console.dir(newMeal);
-  newMeal.timestamp_of_meal = $('#timestampOccured').val()
+  newMeal.timestamp_of_meal = function() {
+    // grab the date and time inputed
+    var date = $('#dateOccured').val()
+    var time = $('#timeOccured').val()
+
+    // grab the user's timezone
+    var timezone = new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1]
+
+    var timestampStr = `${date} ${time} ${timezone}`;
+
+    return(new Date(timestampStr).toGMTString());
+  }
+
   newMeal.timestamp_of_recording = (new Date()).toUTCString();
   newMeal.meal_type = $('#mealType').val();
   socket.emit('_finished_meal', { meal: newMeal });

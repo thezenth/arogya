@@ -3,8 +3,12 @@ function newMealSetup() {
     <div class="row">
       <h2>Record your meal</h2>
       <div class="input-field col s12">
-        <input id="timestampOccured" name="timestampOccured" type="date" class="datepicker">
-        <label for="timestampOccured">When did you eat this meal?</label>
+        <input id="dateOccured" type="date" class="datepicker">
+        <label for="dateOccured">What date you eat this meal?</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="timeOccured" type="time" class="timepicker">
+        <label for="timeOccured">What time did you eat this meal?</label>
       </div>
       <div class="input-field col s12">
         <select id="mealType">
@@ -46,5 +50,14 @@ function newMealSetup() {
     <script>$('select').material_select();</script>
     <!-- This is called so that the datepicker works -->
     <script>$('.datepicker').pickadate();</script>
+    <!-- This is called so that the timepicker works - see https://github.com/chingyawhao/materialize-clockpicker -->
+    <script>
+      $('.timepicker').pickatime({
+        autoclose: false,
+        twelvehour: false,
+        default: '9:30:00'
+      });
+    </script>
+
   `);
 }
