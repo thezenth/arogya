@@ -3,7 +3,11 @@ function newMealSetup() {
 
     <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
     <link rel="stylesheet" href="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/css/materialize.clockpicker.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/en-gb.js"></script>
+    <script>
+        moment().format();
+    </script>
+    
     <div class="row">
       <h2>Record your meal</h2>
       <div class="input-field col s12">
@@ -11,7 +15,7 @@ function newMealSetup() {
         <label for="dateOccured">What date you eat this meal?</label>
       </div>
       <div class="input-field col s12">
-        <input id="timeOccured" type="time" class="timepicker">
+        <input id="timeOccured" type="time">
         <label for="timeOccured">What time did you eat this meal?</label>
       </div>
       <div class="input-field col s12">
