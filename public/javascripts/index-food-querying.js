@@ -78,17 +78,6 @@ function finishMeal() {
   socket.emit('_finished_meal', { meal: newMeal });
 }
 
-function addBasicFoodToMeal() {
-  var newFood = {
-    name: $('#foodName').val().toLowerCase(),
-    comments: $('#foodComments').val()
-  }
-
-  updateSelectedFoods(newFood)
-
-  newMeal.foods.push(newFood);
-}
-
 // this function allows for the construction of a food with lots of nutrition info
 function constructFood() {
   var dbFood = {
@@ -209,4 +198,16 @@ function removeFoodFromMeal(dbN) {
 
   // delete parent div
   document.getElementById("delete-" + dbN).parentNode.removeChild(document.getElementById("delete-" + dbN));
+}
+
+
+function addBasicFoodToMeal() {
+  var newFood = {
+    name: $('#foodName').val().toLowerCase(),
+    comments: $('#foodComments').val()
+  }
+
+  updateSelectedFoods(newFood)
+
+  newMeal.foods.push(newFood);
 }
