@@ -1,5 +1,8 @@
 function newMealSetup() {
   return(`
+
+    <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
+
     <div class="row">
       <h2>Record your meal</h2>
       <div class="input-field col s12">
