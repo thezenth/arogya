@@ -26,7 +26,7 @@ function newMealSetup() {
         <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupFoodCreation();"><i class="material-icons">create</i></a>
       </div>
       <div class="col s2 center-align">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupCreatedFoodSearch();"><i class="material-icons">redo</i></a>
       </div>
       <div class="col s6 center-align">
         <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>

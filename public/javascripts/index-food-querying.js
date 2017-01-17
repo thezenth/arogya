@@ -55,6 +55,18 @@ function setupFoodCreation() {
   );
 }
 
+function setupCreatedFoodSearch() {
+  document.getElementById("food-addition-div").innerHTML = "";
+
+  renderPartial("food-addition-div",
+    createdFoodsAutocomplete({
+      "Macadamia Nuts": null,
+      "Great Food": null,
+      "Good Food": null
+    })
+  );
+}
+
 function finishMeal() {
   //console.dir(newMeal);
   newMeal.timestamp_of_meal = $('#timestampOccured').val()
