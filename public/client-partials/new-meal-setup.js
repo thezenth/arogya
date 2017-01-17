@@ -2,6 +2,7 @@ function newMealSetup() {
   return(`
 
     <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/css/materialize.clockpicker.css">
 
     <div class="row">
       <h2>Record your meal</h2>
