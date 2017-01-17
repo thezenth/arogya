@@ -59,11 +59,7 @@ function setupCreatedFoodSearch() {
   document.getElementById("food-addition-div").innerHTML = "";
 
   renderPartial("food-addition-div",
-    createdFoodsAutocomplete({
-      "Macadamia Nuts": null,
-      "Great Food": null,
-      "Good Food": null
-    })
+    createdFoodsAutocomplete()
   );
 }
 

@@ -1,4 +1,4 @@
-function createdFoodsAutocomplete(allCreatedFoods) {
+function createdFoodsAutocomplete() {
   return(`
     <div class="row">
       <div class="col s12">
@@ -14,7 +14,11 @@ function createdFoodsAutocomplete(allCreatedFoods) {
 
     <script>
       $('input.autocomplete').autocomplete({
-        data: ${allCreatedFoods}
+        data: {
+          "Macadamia Nuts": null,
+          "Great Food": null,
+          "Good Food": null
+        }
       });
     </script>
   `);
