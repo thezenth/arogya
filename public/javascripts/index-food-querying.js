@@ -80,7 +80,7 @@ function finishMeal() {
 
 function addBasicFoodToMeal() {
   var newFood = {
-    name: $('#foodName').val(),
+    name: $('#foodName').val().toLowerCase(),
     comments: $('#foodComments').val()
   }
 
