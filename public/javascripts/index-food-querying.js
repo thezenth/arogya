@@ -51,7 +51,7 @@ function setupFoodCreation() {
       { id, name }
   */
   renderPartial("food-addition-div",
-    foddAdditionDiv()
+    foodAdditionDiv()
   );
 }
 
