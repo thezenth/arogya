@@ -78,6 +78,18 @@ function finishMeal() {
   socket.emit('_finished_meal', { meal: newMeal });
 }
 
+function addBasicFoodToMeal() {
+  var newFood = {
+    name: $('#foodName').val(),
+    comments: $('#foodComments').val()
+  }
+
+  updateSelectedFoods(newFood)
+
+  newMeal.foods.push(newFood);
+}
+
+// this function allows for the construction of a food with lots of nutrition info
 function constructFood() {
   var dbFood = {
     name: $('#foodName').val(),
@@ -100,7 +112,7 @@ function constructFood() {
   //addFoodToMeal(JSON.stringify(newFood));
 }
 
-function updatedSelectedFoods(f, id) {
+function updateSelectedFoods(f) {
   if (!document.getElementById("selectedfoods-div")) {
     renderPartial("main-div",
       `<div id="selectedfoods-div" class="row container"></div>`
@@ -131,7 +143,7 @@ function addConstructedFoodToMeal(foodDbObj, mealFoodObj) {
 
   newMeal.foods.push(toMeal);
 
-  updatedSelectedFoods(toDb, toDb.name);
+  updateSelectedFoods(toDb);
 
   // add to db
   socket.emit('_save_food_to_db', { food: toDb });
