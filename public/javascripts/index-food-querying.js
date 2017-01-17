@@ -58,6 +58,9 @@ function setupFoodCreation() {
 function setupCreatedFoodSearch() {
   document.getElementById("food-addition-div").innerHTML = "";
 
+  // get all foods
+  //socket.emit('_get_all_created_foods', null);
+
   renderPartial("food-addition-div",
     createdFoodsAutocomplete({
       "Macadamia Nuts": null,

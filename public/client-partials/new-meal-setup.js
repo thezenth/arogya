@@ -18,7 +18,9 @@ function newMealSetup() {
       </div>
     </div>
     <div class="row">
-      <h3>Add a food</h3>
+      <h3>Add a food</h3><a class="btn-floating btn-large waves-effect waves-light red" onclick="setupCreatedFoodSearch();"><i class="material-icons">redo</i></a>
+      <!-- Buttons below contain features not in production/not working! -->
+      <!--
       <div class="col s2 center-align">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
       </div>
@@ -30,7 +32,7 @@ function newMealSetup() {
       </div>
       <div class="col s6 center-align">
         <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div id="food-addition-div" class="col s12"></div>

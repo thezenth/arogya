@@ -2,6 +2,20 @@ var foodData = require('../db.js').food_data;
 var update = require('../db/update.js');
 
 module.exports = function(socket) {
+
+  socket.on('_get_all_created_foods', function(data) {
+    foodData.list(function(err, body) {
+      if (err) {
+        console.error(err);
+      } else {
+        body.rows.forEach(function(doc) {
+          console.log(doc);
+          //socket.emit('_return_all_created_foods', )
+        });
+      }
+    });
+  });
+
   socket.on('_check_if_food_exists', function(data) {
 
     // put some sort of object validation here
