@@ -4,17 +4,17 @@ function newMealSetup() {
       <h2>Record your meal</h2>
       <div class="input-field col s12">
         <input id="timestampOccured" name="timestampOccured" type="date" class="datepicker">
-        <label for="timestampOccured">Meal Eaten</label>
+        <label for="timestampOccured">When did you eat this meal?</label>
       </div>
       <div class="input-field col s12">
         <select id="mealType">
-          <option value="" disabled selected>Choose your option</option>
+          <option value="" disabled selected>Choose a meal type</option>
           <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
           <option value="dinner">Dinner</option>
           <option value="snack">Snack</option>
         </select>
-        <label>Units</label>
+        <label>What meal was it?</label>
       </div>
     </div>
     <div class="row">
