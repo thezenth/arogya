@@ -18,7 +18,7 @@ function newMealSetup() {
       </div>
     </div>
     <div class="row">
-      <h3>Add a food</h3><a class="btn-floating btn-large waves-effect waves-light red" onclick="setupCreatedFoodSearch();"><i class="material-icons">redo</i></a>
+      <h3>Add a food</h3><a class="btn-floating btn-large waves-effect waves-light red" onclick="setupFoodCreation();"><i class="material-icons">create</i></a>
       <!-- Buttons below contain features not in production/not working! -->
       <!--
       <div class="col s2 center-align">
