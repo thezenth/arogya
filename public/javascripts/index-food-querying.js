@@ -19,61 +19,11 @@ function beginNewMeal() {
 
   // delete create meal button
   document.getElementById("main-div").innerHTML = "";
-  //document.getElementById("newMealButton").outerHTML = "";
-  //delete document.getElementById("newMealButton");
 
-  // create horizontal finishMealButton
+  // create buttons, divs, basic forms, etc. for the new meal
   renderPartial("main-div",
-    `
-    <div class="row">
-      <h2>Record your meal</h2>
-      <div class="input-field col s12">
-        <input id="timestampOccured" name="timestampOccured" type="date" class="datepicker">
-        <label for="timestampOccured">Meal Eaten</label>
-      </div>
-      <div class="input-field col s12">
-        <select id="mealType">
-          <option value="" disabled selected>Choose your option</option>
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="snack">Snack</option>
-        </select>
-        <label>Units</label>
-      </div>
-    </div>
-    <div class="row">
-      <h3>Add a food</h3>
-      <div class="col s2 center-align">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
-      </div>
-      <div class="col s2 center-align">
-        <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupFoodCreation();"><i class="material-icons">create</i></a>
-      </div>
-      <div class="col s2 center-align">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
-      </div>
-      <div class="col s6 center-align">
-        <a class="waves-effect waves-light btn center-align" onclick="finishMeal();">Done?</a>
-      </div>
-    </div>
-    <div class="row">
-      <div id="food-addition-div" class="col s12"></div>
-    </div>
-
-    <!-- This is called to make the select/option menus work -->
-    <script>$('select').material_select();</script>
-    <!-- This is called so that the datepicker works -->
-    <script>$('.datepicker').pickadate();</script>
-    `
+    newMealSetup()
   );
-
-  // instantiate other html stuff
-
-  //var finishMealButton = document.createElement("button");
-  //finishMealButton.innerHTML = "Done?";
-  //finishMealButton.onclick = function(){ finishMeal(); };
-  //document.getElementById("main-div").appendChild(finishMealButton);
 }
 
 // this setupQuery method, and the other horizontal fab button methods, are setup such that when one is clicked, the food addition space is cleared for it
@@ -101,51 +51,7 @@ function setupFoodCreation() {
       { id, name }
   */
   renderPartial("food-addition-div",
-    `
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="foodName" name="foodName" type="text">
-        <label for="foodName">Name</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="servingsEaten" name="servingsEaten" type="number">
-        <label for="servingsEaten">Servings Eaten</label>
-      </div>
-    </div>
-
-    <% var vars = [
-      {id: "servingSize", name: "Serving Size"},
-      {id: "calories", name: "Calories"},
-      {id: "fat", name: "Fat"},
-      {id: "protein", name: "Protein"},
-      {id: "dietaryFiber", name: "Dietary Fiber"}
-    ] %>
-
-    <% for(var i = 0; i<vars.length; i++) { %>
-    <div class="row">
-      <div class="input-field col s8">
-        <input id="<%= vars[i].id %>" name="<%= vars[i].id%>" type="number" class="validate">
-        <label for="test"><%= vars[i].name %></label>
-      </div>
-      <div class="input-field col s4">
-        <select id="units-<%= vars[i].id %>">
-          <option value="" disabled selected>Choose your option</option>
-          <option value="cups">Cups</option>
-          <option value="oz">Ounces (oz)</option>
-          <option value="g">Grams (g)</option>
-        </select>
-        <label>Units</label>
-      </div>
-    </div>
-  <% } %>
-
-    <script>$('select').material_select();</script>
-
-    <button onclick="constructFood()">Add Food</button>
-    `
+    foddAdditionDiv()
   );
 }
 
@@ -188,10 +94,7 @@ function updatedSelectedFoods(f, id) {
 
   // here, we just pass the ndbno to reference in the remove function
   renderPartial("selectedfoods-div",
-    `<div id="delete-${id}" class="col s12">
-      <h3>${f.name}</h3>
-      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeConstructuedFoodFromMeal('${id}');"><i class="material-icons">delete</i></a>
-    </div>`
+    addSelectedFood(f.name)
   );
 }
 

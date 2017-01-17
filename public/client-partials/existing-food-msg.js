@@ -5,5 +5,5 @@ function existingFoodMsg(fullFood, mealFood) {
       <button onclick='addConstructedFoodToMeal(${JSON.stringify(fullFood)},${JSON.stringify(mealFood)});'>Yes</button>
       <button onclick="deleteExistsMsg();">No</button>
     </div>
-  `)
+  `);
 }
