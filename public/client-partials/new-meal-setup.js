@@ -1,13 +1,13 @@
 function newMealSetup() {
   return(`
 
-    <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
     <link rel="stylesheet" href="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/css/materialize.clockpicker.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/en-gb.js"></script>
     <script>
         moment().format();
-    </script>
-    
+    </script> -->
+
     <div class="row">
       <h2>Record your meal</h2>
       <div class="input-field col s12">
@@ -59,13 +59,13 @@ function newMealSetup() {
     <!-- This is called so that the datepicker works -->
     <script>$('.datepicker').pickadate();</script>
     <!-- This is called so that the timepicker works - see https://github.com/chingyawhao/materialize-clockpicker -->
-    <script>
+    <!-- <script>
       $('.timepicker').pickatime({
         autoclose: false,
         twelvehour: false,
         default: '9:30:00'
       });
-    </script>
+    </script> -->
 
   `);
 }
