@@ -63,9 +63,10 @@
               <input id="startDate" type="date" class="datepicker">
               <label for="startDate">What date did this symptom start?</label>
             </div>
-            
+
             <!-- This is called so that the datepicker works -->
-            <script>$('.datepicker').pickadate();</script>
+            <!-- Note: we have to escape the script tag, so that it doesnt close any higher script tags -->
+            <script>$('.datepicker').pickadate();<\/script>
 
             <div class="input-field col s12">
               <input id="startTime" type="time">
