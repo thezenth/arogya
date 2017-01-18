@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title><%= title %></title>
+    <% include ./partials/head.ejs %>
+  </head>
+  <header>
+    <% include ./partials/navbar.ejs %>
+  </header>
+
+  <body>
+
+    <script>
+
+      var symptomRecord = {
+        date: "",
+        symptoms: []
+      }
+
+      function beginSymptomsRecord() {
+
+        symptomRecord = {
+          date: "",
+          symptoms: []
+        }
+
+        renderPartial("main-div",
+          `
+          <div class="row">
+            <h2>Record your symptoms</h2>
+            <div class="input-field col s12">
+              <input id="dateOccured" type="date" class="datepicker">
+              <label for="dateOccured">What date did these symptoms occur?</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <h3>Add a symptom</h3>
+              <a class="btn-floating btn-large waves-effect waves-light red" onclick="setupSymptomAddition();"><i class="material-icons">create</i></a>
+            </div>
+          </div>
+          <div class="row">
+            <div id="symptom-addition-div" class="col s12"></div>
+          </div>
+          `
+        );
+      }
+
+      function setupSymptomAddition() {
+
+        renderPartial("symptom-addition-div",
+          `
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="symptomName" type="text" class="validate">
+              <label for="symptomName">Symptom Name (or a very short description)</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="symptomDescription" type="text" class="materialize-textarea">
+              <label for="symptomDescription">Description</label>
+            </div>
+            <p class="range-field">
+              <input type="range" id="symptomIntensity" min="0" max="5"/>
+            </p>
+            <div class="input-field col s12">
+              <input id="startDate" type="date" class="datepicker">
+              <label for="startDate">What date did this symptom start?</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="startTime" type="time">
+              <!-- <label for="startTime">What time did this symptom start?</label> -->
+            </div>
+            <div class="input-field col s12">
+              <input id="symptomDuration" type="number" class="validate">
+              <label for="symptomDuration">Duration (approx. hours)</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="symptomComments" type="text" class="materialize-textarea">
+              <label for="symptomComments">Comments</label>
+            </div>
+            <a class="waves-effect waves-light btn" onclick="addSymptomToRecord();">Add Symptom</a>
+          </div>
+
+          <!-- This is called so that the datepicker works -->
+          <script>$('.datepicker').pickadate();</script>
+          `
+        );
+
+        function addSymptomToRecord() {
+
+          // creating the timestmap of the meal!
+          // grab the date and time inputed
+          var date = $('#startDate').val();
+          var time = $('#startTime').val();
+
+          // grab the user's timezone
+          var timezone = new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1]
+
+          var timestampStr = `${date} ${time} ${timezone}`;
+          // plug the string into the Date function and get it as a GMT string
+          var timestampSymptom = new Date(timestampStr).toGMTString();
+
+          var newSymptom = {
+            name: $('#symptomName').val().toLowerCase(),
+            description: $('#symptomDescription').val(),
+            intensity: $('#symptomIntensity').val(),
+            startTimestamp: timestampSymptom,
+            duration: $('#symptomDuration').val(),
+            comments: $('#symptomComments').val()
+          }
+
+          symptomRecord.symptoms.push(newSymptom);
+
+          updateAddedSymptoms(newSymptom);
+
+          // clear out the symptom addition space, now that we are done with it
+          document.getElementById("symptom-addition-div").innerHTML = "";
+        }
+
+        function updateAddedSymptoms(symp) {
+          if(!document.getElementById('added-symptoms-div')) {
+            renderPartial("main-div",
+              `
+              <div class="row">
+                <div class="added-symptoms-div">
+                </div>
+              </div>
+              `
+            );
+          }
+
+          renderPartial("added-symptoms-div",
+            `
+            <div id="delete-${symp.name}" class="col s12">
+              <h3>${symp.name}</h3>
+              <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeSymptomFromRecord('${symp.name}');">
+                <i class="material-icons">delete</i>
+              </a>
+            </div>
+            `
+          );
+        }
+
+        function removeSymptomFromRecord(sympName) {
+          var found = false;
+          var count = 0;
+          //console.dir(newMeal.foods);
+          while(!found) {
+            if (symptomRecord.symptoms[count].name == sympName) {
+              // then, remove the relevant object
+              symptomRecord.symptoms.splice(count, 1);
+              found = true;
+            }
+            count++;
+          }
+
+          // delete parent div
+          document.getElementById("delete-" + sympName).parentNode.removeChild(document.getElementById("delete-" + sympName));
+        }
+
+        function finishSymptomsRecord() {
+          socket.emit('_save_symptom_record_to_db', { symptomRecord: symptomRecord });
+        }
+
+        socket.on('_saved_symptom_record_to_db', function(data) {
+          document.getElementById("main-div").innerHTML = "";
+          renderPartial("main-div",
+            `
+            <div class="row">
+              <div class="col s12 center-align">
+                <button id="recordSymptomsButton" onclick="beginSymptomsRecord();" class="waves-effect waves-light btn">
+                  <i class="material-icons left">create</i>Record
+                </button>
+              </div>
+            </div>
+            `
+          );
+        });
+      }
+    </script>
+
+    <div id="main-div" class="container">
+      <div class="row">
+        <div class="col s12 center-align">
+          <button id="recordSymptomsButton" onclick="beginSymptomsRecord();" class="waves-effect waves-light btn">
+            <i class="material-icons left">create</i>Record
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <% include ./partials/foot.ejs %>
+</html>
