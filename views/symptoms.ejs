@@ -45,10 +45,9 @@
         );
       }
 
-      function setupSymptomAddition() {
-
-        renderPartial("symptom-addition-div",
-          `<div class="row">
+      function addedSymptom() {
+        return(`
+          <div class="row">
             <div class="input-field col s12">
               <input id="symptomName" type="text" class="validate">
               <label for="symptomName">Symptom Name (or a very short description)</label>
@@ -80,7 +79,14 @@
           </div>
 
           <!-- This is called so that the datepicker works -->
-          <script>$('.datepicker').pickadate();</script>`
+          <script>$('.datepicker').pickadate();</script>
+        `);
+      }
+
+      function setupSymptomAddition() {
+
+        renderPartial("symptom-addition-div",
+          addedSymptom()
         );
 
         function addSymptomToRecord() {
