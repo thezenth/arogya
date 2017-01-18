@@ -12,7 +12,7 @@ module.exports = function(io) {
       require('./food-queries')(socket);
       require('./meal-crud')(socket);
       require('./food-crud')(socket);
-      require('./symptoms-crud')(socket);
+      require('./symptom-crud')(socket);
   });
 
 
