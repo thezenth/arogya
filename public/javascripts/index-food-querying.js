@@ -14,39 +14,214 @@ function emitFoodQuery() {
 
 function beginNewMeal() {
   // create meal object/clear out any existing ones
-  newMeal = { foods: [] };
+  newMeal = { timestamp_of_meal:"", timestamp_of_recording:"", meal_type: "", foods: [] };
   //newMeal.foods = [];
 
   // delete create meal button
-  document.getElementById("newMealButton").outerHTML = "";
-  delete document.getElementById("newMealButton");
+  document.getElementById("main-div").innerHTML = "";
 
-  // instantiate other html stuff
-  var queryInput = document.createElement("input");
+  // create buttons, divs, basic forms, etc. for the new meal
+  renderPartial("main-div",
+    newMealSetup()
+  );
+}
+
+// this setupQuery method, and the other horizontal fab button methods, are setup such that when one is clicked, the food addition space is cleared for it
+function setupQuery() {
+  // clear out food addition space
+  document.getElementById("food-addition-div").innerHTML = "";
+  // render this inside the food addition space
+  renderPartial("food-addition-div",
+    `<input id="foodQuery" name="foodQuery" type="text" onkeyup="emitFoodQuery();">`
+  );
+
+  /*var queryInput = document.createElement("input");
   queryInput.id = "foodQuery";
   queryInput.name = "foodQuery";
   queryInput.type = "text";
   queryInput.onkeyup = function(){ emitFoodQuery(); };
-  document.getElementById("main-div").appendChild(queryInput);
+  document.getElementById("main-div").appendChild(queryInput);*/
+}
 
-  var finishMealButton = document.createElement("button");
-  finishMealButton.innerHTML = "Done?";
-  finishMealButton.onclick = function(){ finishMeal(); };
-  document.getElementById("main-div").appendChild(finishMealButton);
+// setups the basic create food form
+function setupFoodCreation() {
+  document.getElementById("food-addition-div").innerHTML = "";
+
+  /* vars array is made up of objects such that:
+      { id, name }
+  */
+  renderPartial("food-addition-div",
+    foodAdditionDiv()
+  );
+}
+
+function setupCreatedFoodSearch() {
+  document.getElementById("food-addition-div").innerHTML = "";
+
+  // get all foods
+  //socket.emit('_get_all_created_foods', null);
+
+  renderPartial("food-addition-div",
+    createdFoodsAutocomplete({
+      "Macadamia Nuts": null,
+      "Great Food": null,
+      "Good Food": null
+    })
+  );
 }
 
 function finishMeal() {
-  console.dir(newMeal);
+  //console.dir(newMeal);
+
+
+  // creating the timestmap of the meal!
+  // grab the date and time inputed
+  var date = $('#dateOccured').val()
+  var time = $('#timeOccured').val()
+
+  // grab the user's timezone
+  var timezone = new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1]
+
+  var timestampStr = `${date} ${time} ${timezone}`;
+  // plug the string into the Date function and get it as a GMT string
+  var timestampMeal = new Date(timestampStr).toGMTString()
+
+  newMeal.timestamp_of_meal = timestampMeal;
+  newMeal.timestamp_of_recording = (new Date()).toUTCString();
+  newMeal.meal_type = $('#mealType').val();
   socket.emit('_finished_meal', { meal: newMeal });
 }
 
-function addFoodToMeal(f) {
-  console.dir(f);
+// this function allows for the construction of a food with lots of nutrition info
+function constructFood() {
+  var dbFood = {
+    name: $('#foodName').val(),
+    serving_size: { units: $('#units-servingSize').val(), value: $('#servingSize').val() },
+    calories: { units: $('#units-calories').val(), value: $('#calories').val() },
+    fat: { units: $('#units-fat').val(), value: $('#fat').val() },
+    protein: { units: $('#units-protein').val(), value: $('#protein').val() },
+    dietary_fiber: { units: $('#units-dietaryFiber').val(), value: $('#dietaryFiber').val() }
+  }
+
+  var inMeal = {
+    name: dbFood.name,
+    servings_eaten: $('#servingsEaten').val(),
+  }
+
+  // check if the food exists, based upon the name
+  // forMeal is the object we want to save with our meal
+  socket.emit('_check_if_food_exists', { food: dbFood, forMeal: inMeal });
+
+  //addFoodToMeal(JSON.stringify(newFood));
+}
+
+function updateSelectedFoods(f) {
+  if (!document.getElementById("selectedfoods-div")) {
+    renderPartial("main-div",
+      `<div id="selectedfoods-div" class="row container"></div>`
+    );
+  }
+
+  // here, we just pass the ndbno to reference in the remove function
+  renderPartial("selectedfoods-div",
+    addSelectedFood(f.name)
+  );
+}
+
+function addConstructedFoodToMeal(foodDbObj, mealFoodObj) {
+
+  var toMeal = mealFoodObj;
+  if (toMeal !== null) {
+    if (typeof toMeal === 'string') {
+      toMeal = JSON.parse(toMeal);
+    }
+  }
+
+  var toDb = foodDbObj;
+  if (toDb !== null) {
+    if (typeof toDb === 'string') {
+      toDb = JSON.parse(toDb);
+    }
+  }
+
+  newMeal.foods.push(toMeal);
+
+  updateSelectedFoods(toDb);
+
+  // add to db
+  socket.emit('_save_food_to_db', { food: toDb });
+}
+
+function removeConstructuedFoodFromMeal(id) {
+  var found = false;
+  var count = 0;
+  //console.dir(newMeal.foods);
+  while(!found) {
+    if (newMeal.foods[count].name == id) {
+      // then, remove the relevant object
+      newMeal.foods.splice(count, 1);
+      found = true;
+    }
+    count++;
+  }
+
+  // delete parent div
+  document.getElementById("delete-" + id).parentNode.removeChild(document.getElementById("delete-" + id));
+}
+
+function addFoodToMeal(fStr) {
+  var f = JSON.parse(fStr);
   // push to the new meal being constructed
   newMeal.foods.push(f);
+  //console.dir(f);
+  //console.dir(newMeal.foods);
   // delete any autocomplete divs
   if(document.getElementById("autocomplete-div")) {
     document.getElementById("autocomplete-div").outerHTML = "";
     delete document.getElementById("autocomplete-div");
   }
+
+  if (!document.getElementById("selectedfoods-div")) {
+    renderPartial("main-div",
+      `<div id="selectedfoods-div" class="row container"></div>`
+    );
+  }
+
+  // here, we just pass the ndbno to reference in the remove function
+  renderPartial("selectedfoods-div",
+    `<div id="delete-${f.ndbno}" class="col s12">
+      <h3>${f.name}</h3>
+      <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeFoodFromMeal(${f.ndbno});"><i class="material-icons">delete</i></a>
+    </div>`
+  );
+}
+
+function removeFoodFromMeal(dbN) {
+  // loop through all the foods, and find the index of the food with the dbN
+  var found = false;
+  var count = 0;
+  //console.dir(newMeal.foods);
+  while(!found) {
+    if (newMeal.foods[count].ndbno == dbN) {
+      // then, remove the relevant object
+      newMeal.foods.splice(count, 1);
+      found = true;
+    }
+    count++;
+  }
+
+  // delete parent div
+  document.getElementById("delete-" + dbN).parentNode.removeChild(document.getElementById("delete-" + dbN));
+}
+
+
+function addBasicFoodToMeal() {
+  var newFood = {
+    name: $('#foodName').val().toLowerCase(),
+    comments: $('#foodComments').val()
+  }
+
+  updateSelectedFoods(newFood)
+
+  newMeal.foods.push(newFood);
 }

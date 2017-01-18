@@ -15,7 +15,8 @@
          "cfenv": "latest",
          "async": "latest",
          "nano": "latest",
-         "socket.io": "latest"
+         "socket.io": "latest",
+         "materialize-clockpicker": "latest"
        },
        "scripts": {
                "start": "node app.js"

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title><%= title %></title>
+    <% include ./partials/head.ejs %>
+    <script src="/javascripts/index-food-querying.js"></script>
+    <script src="/javascripts/index-socket-listeners.js"></script>
+    <script src="/javascripts/dynamic-partials.js"></script>
+
+    <!-- include all of the dynamic partials we'll need -->
+    <script src="/client-partials/existing-food-msg.js"></script>
+    <script src="/client-partials/add-selected-food.js"></script>
+    <script src="/client-partials/food-addition-div.js"></script>
+    <script src="/client-partials/new-meal-button.js"></script>
+    <script src="/client-partials/new-meal-setup.js"></script>
+    <script src="/client-partials/created-foods-autocomplete.js"></script>
+
+  </head>
+  <header>
+    <% include ./partials/navbar.ejs %>
+  </header>
+
+  <body>
+    <div id="main-div" class="container">
+      <div class="row">
+          <div class="col s4"></div>
+          <div class="col s4 center-align">
+            <button id="newMealButton" onclick="beginNewMeal();" class="waves-effect waves-light btn">
+              <i class="material-icons left">create</i>Record
+            </button>
+          </div>
+          <div class="col s4"></div>
+      </div>
+    </div>
+  </body>
+  <% include ./partials/foot.ejs %>
+</html>

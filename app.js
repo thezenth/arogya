@@ -43,6 +43,13 @@ server.listen(port);
 // initialized socket.io
 var io = require('socket.io')(server);
 
+// some socket.io middleware
+io.use(function(socket, next) {
+  console.log("Heard an emit");
+  //console.dir(socket.request);
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

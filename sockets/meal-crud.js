@@ -6,9 +6,17 @@ var dietData = require('../db.js').diet_data;
 module.exports = function(socket) {
   socket.on('_finished_meal', function(data) {
     var newMeal = data.meal;
+    dietData.insert(newMeal, function(err, body) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(body);
+        socket.emit('_saved_meal_to_db', null);
+      }
+    })
 
     // get nutrition information on each food in meal
-    var foods = newMeal.foods;
+    /*var foods = newMeal.foods;
     var foodsWithNutrition = [];
     var apiKey = "FYpMQAWPYLHGPJvmgvtGqNeSStYiFlSgy9Wn3YXC";
     async.each(foods, function(food, callback) {
@@ -39,7 +47,7 @@ module.exports = function(socket) {
           }
         });
       }
-    });
+    });*/
 
 
 

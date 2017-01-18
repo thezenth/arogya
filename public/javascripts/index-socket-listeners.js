@@ -18,16 +18,16 @@ socket.on('_relevant_foods_returned', function(data) {
     button.className = "waves-effect waves-light btn";
     button.innerHTML = foods[i].name;
     // we set the value of the button (even though this is typically unusued for a button) to store the food object for later
-    // as well, we stringify it to preserve the JSON
+    // as well, we stringify it to preserve the JSON, in the addFoodToMeal function
     button.value = JSON.stringify(foods[i]);
-    console.log(button.value);
+    //console.log(button.value);
     button.onclick = function() {
-      addFoodToMeal(JSON.parse(this.value));
+      addFoodToMeal(this.value);
     }
     div.appendChild(button);
   }
 
-  document.getElementById("main-div").appendChild(div);
+  document.getElementById("food-addition-div").appendChild(div);
 });
 
 socket.on('_relevant_foods_not_found', function(data) {
@@ -53,12 +53,55 @@ socket.on('_saved_meal_to_db', function(data) {
   // wait a specified amount of time to delete this message, and then add back the addMeal button
   var time = 3 * 1000;
   setTimeout(function() {
+
     document.getElementById("main-div").innerHTML = "";
+
+    renderPartial("main-div",
+      newMealButton()
+    );
+
+    /*
     // add back the newMealButton
     var newMealButton = document.createElement("button");
     newMealButton.id = "newMealButton";
+    newMealButton.className = "waves-effect waves-light btn";
+    newMealButton.innerHTML = "Record"; // text of the button
+    // onclick
     newMealButton.onClick = function(){ beginNewMeal(); };
-    newMealButton.innerHTML = "Create a new meal";
+
+    // append icon
+    var icon = document.createElement("i");
+    icon.className = "material-icons left";
+    icon.innerHTML = "create"; // this is the reference to the material icon font
+    newMealButton.appendChild(icon);
+
     document.getElementById("main-div").appendChild(newMealButton);
-  }, time)
+    */
+  }, time);
+});
+
+function deleteExistsMsg() {
+  document.getElementById("food-exist-msg").innerHTML = "";
+  document.getElementById("food-exist-msg").outerHTML = "";
+}
+
+socket.on('_return_food_exist_check', function(data) {
+  if (data.exists) {
+    // display some sort of message
+    //var stringy = JSON.stringify(data.food);
+    //var funcRef = "addConstructedFoodToMeal('" + stringy + "');"
+  //  console.log(funcRef);
+    renderPartial("food-addition-div",
+      existingFoodMsg(data.food, data.forMeal)
+    );
+    //socket.emit('_save_food_to_db', { food: data.food });
+  } else {
+    addConstructedFoodToMeal(data.food, data.forMeal);
+    //socket.emit('_save_food_to_db', { food: data.food });
+  }
+});
+
+socket.on('_saved_food_to_db', function (data) {
+  // clear out the food addition space
+  document.getElementById("food-addition-div").innerHTML = "";
 });
