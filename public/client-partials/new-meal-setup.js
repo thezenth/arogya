@@ -16,7 +16,7 @@ function newMealSetup() {
       </div>
       <div class="input-field col s12">
         <input id="timeOccured" type="time">
-        <label for="timeOccured">What time did you eat this meal?</label>
+        <!-- <label for="timeOccured">What time did you eat this meal?</label> -->
       </div>
       <div class="input-field col s12">
         <select id="mealType">
