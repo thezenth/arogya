@@ -26,8 +26,7 @@
         }
 
         renderPartial("main-div",
-          `
-          <div class="row">
+          `<div class="row">
             <h2>Record your symptoms</h2>
             <div class="input-field col s12">
               <input id="dateOccured" type="date" class="datepicker">
@@ -42,16 +41,14 @@
           </div>
           <div class="row">
             <div id="symptom-addition-div" class="col s12"></div>
-          </div>
-          `
+          </div>`
         );
       }
 
       function setupSymptomAddition() {
 
         renderPartial("symptom-addition-div",
-          `
-          <div class="row">
+          `<div class="row">
             <div class="input-field col s12">
               <input id="symptomName" type="text" class="validate">
               <label for="symptomName">Symptom Name (or a very short description)</label>
@@ -83,8 +80,7 @@
           </div>
 
           <!-- This is called so that the datepicker works -->
-          <script>$('.datepicker').pickadate();</script>
-          `
+          <script>$('.datepicker').pickadate();</script>`
         );
 
         function addSymptomToRecord() {
@@ -121,24 +117,20 @@
         function updateAddedSymptoms(symp) {
           if(!document.getElementById('added-symptoms-div')) {
             renderPartial("main-div",
-              `
-              <div class="row">
+              `<div class="row">
                 <div class="added-symptoms-div">
                 </div>
-              </div>
-              `
+              </div>`
             );
           }
 
           renderPartial("added-symptoms-div",
-            `
-            <div id="delete-${symp.name}" class="col s12">
+            `<div id="delete-${symp.name}" class="col s12">
               <h3>${symp.name}</h3>
               <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeSymptomFromRecord('${symp.name}');">
                 <i class="material-icons">delete</i>
               </a>
-            </div>
-            `
+            </div>`
           );
         }
 
@@ -166,15 +158,13 @@
         socket.on('_saved_symptom_record_to_db', function(data) {
           document.getElementById("main-div").innerHTML = "";
           renderPartial("main-div",
-            `
-            <div class="row">
+            `<div class="row">
               <div class="col s12 center-align">
                 <button id="recordSymptomsButton" onclick="beginSymptomsRecord();" class="waves-effect waves-light btn">
                   <i class="material-icons left">create</i>Record
                 </button>
               </div>
-            </div>
-            `
+            </div>`
           );
         });
       }
