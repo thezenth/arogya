@@ -117,7 +117,7 @@
         }
 
         symptomRecord.symptoms.push(newSymptom);
-
+        console.dir(symptomRecord);
         updateAddedSymptoms(newSymptom);
 
         // clear out the symptom addition space, now that we are done with it
@@ -125,6 +125,7 @@
       }
 
       function updateAddedSymptoms(symp) {
+        console.log('Updating added symptoms...');
         if(!document.getElementById('added-symptoms-div')) {
           renderPartial("main-div",
             `<div class="row">
@@ -145,6 +146,7 @@
       }
 
       function removeSymptomFromRecord(sympName) {
+        console.log('Removing a symptom...');
         var found = false;
         var count = 0;
         //console.dir(newMeal.foods);
@@ -162,6 +164,7 @@
       }
 
       function finishSymptomsRecord() {
+        console.log('Finishing it all up!');
         socket.emit('_save_symptom_record_to_db', { symptomRecord: symptomRecord });
       }
 
