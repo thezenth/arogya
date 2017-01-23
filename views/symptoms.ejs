@@ -116,12 +116,12 @@
           comments: $('#symptomComments').val()
         }
 
+        // clear out the symptom addition space, now that we are done with it
+        document.getElementById("symptom-addition-div").innerHTML = "";
+
         symptomRecord.symptoms.push(newSymptom);
         console.dir(symptomRecord);
         updateAddedSymptoms(newSymptom);
-
-        // clear out the symptom addition space, now that we are done with it
-        document.getElementById("symptom-addition-div").innerHTML = "";
       }
 
       function updateAddedSymptoms(symp) {
