@@ -126,7 +126,9 @@
 
       function updateAddedSymptoms(symp) {
         console.log('Updating added symptoms...');
+        console.dir(symp);
         if(!document.getElementById('added-symptoms-div')) {
+          console.log("Found no added-symptoms-div, so I'm adding one!")
           renderPartial("main-div",
             `<div class="row">
               <div class="added-symptoms-div">
