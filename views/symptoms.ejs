@@ -127,19 +127,22 @@
       function updateAddedSymptoms(symp) {
         console.log('Updating added symptoms...');
         console.dir(symp);
-        if(!document.getElementById('added-symptoms-div')) {
-          console.log("Found no added-symptoms-div, so I'm adding one!")
+        if (!document.getElementById("added-symptoms-div")) {
           renderPartial("main-div",
-            `<div class="row">
-              <div class="added-symptoms-div">
-              </div>
-            </div>`
+            `<div id="added-symptoms-div" class="row container"></div>`
           );
         }
 
+        // here, we just pass the ndbno to reference in the remove function
         renderPartial("added-symptoms-div",
-          `<div id="delete-${symp.name}" class="col s12"><h3>${symp.name}</h3><a class="btn-floating btn-large waves-effect waves-light red" onclick="removeSymptomFromRecord('${symp.name}');"><i class="material-icons">delete</i></a></div>`
+          `<div id="delete-${symp.name}" class="col s12">
+            <h3>${symp.name}</h3>
+            <!-- <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeSymptomFromRecord('${symp.name}');">
+              <i class="material-icons">delete</i>
+            </a> -->
+          </div>`
         );
+
       }
 
       function removeSymptomFromRecord(sympName) {
