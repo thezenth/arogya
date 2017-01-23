@@ -91,91 +91,92 @@
           addedSymptom()
         );
 
-        function addSymptomToRecord() {
+      }
 
-          // creating the timestmap of the meal!
-          // grab the date and time inputed
-          var date = $('#startDate').val();
-          var time = $('#startTime').val();
+      function addSymptomToRecord() {
 
-          // grab the user's timezone
-          var timezone = new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1]
+        // creating the timestmap of the meal!
+        // grab the date and time inputed
+        var date = $('#startDate').val();
+        var time = $('#startTime').val();
 
-          var timestampStr = `${date} ${time} ${timezone}`;
-          // plug the string into the Date function and get it as a GMT string
-          var timestampSymptom = new Date(timestampStr).toGMTString();
+        // grab the user's timezone
+        var timezone = new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1]
 
-          var newSymptom = {
-            name: $('#symptomName').val().toLowerCase(),
-            description: $('#symptomDescription').val(),
-            intensity: $('#symptomIntensity').val(),
-            startTimestamp: timestampSymptom,
-            duration: $('#symptomDuration').val(),
-            comments: $('#symptomComments').val()
-          }
+        var timestampStr = `${date} ${time} ${timezone}`;
+        // plug the string into the Date function and get it as a GMT string
+        var timestampSymptom = new Date(timestampStr).toGMTString();
 
-          symptomRecord.symptoms.push(newSymptom);
-
-          updateAddedSymptoms(newSymptom);
-
-          // clear out the symptom addition space, now that we are done with it
-          document.getElementById("symptom-addition-div").innerHTML = "";
+        var newSymptom = {
+          name: $('#symptomName').val().toLowerCase(),
+          description: $('#symptomDescription').val(),
+          intensity: $('#symptomIntensity').val(),
+          startTimestamp: timestampSymptom,
+          duration: $('#symptomDuration').val(),
+          comments: $('#symptomComments').val()
         }
 
-        function updateAddedSymptoms(symp) {
-          if(!document.getElementById('added-symptoms-div')) {
-            renderPartial("main-div",
-              `<div class="row">
-                <div class="added-symptoms-div">
-                </div>
-              </div>`
-            );
-          }
+        symptomRecord.symptoms.push(newSymptom);
 
-          renderPartial("added-symptoms-div",
-            `<div id="delete-${symp.name}" class="col s12">
-              <h3>${symp.name}</h3>
-              <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeSymptomFromRecord('${symp.name}');">
-                <i class="material-icons">delete</i>
-              </a>
-            </div>`
-          );
-        }
+        updateAddedSymptoms(newSymptom);
 
-        function removeSymptomFromRecord(sympName) {
-          var found = false;
-          var count = 0;
-          //console.dir(newMeal.foods);
-          while(!found) {
-            if (symptomRecord.symptoms[count].name == sympName) {
-              // then, remove the relevant object
-              symptomRecord.symptoms.splice(count, 1);
-              found = true;
-            }
-            count++;
-          }
+        // clear out the symptom addition space, now that we are done with it
+        document.getElementById("symptom-addition-div").innerHTML = "";
+      }
 
-          // delete parent div
-          document.getElementById("delete-" + sympName).parentNode.removeChild(document.getElementById("delete-" + sympName));
-        }
-
-        function finishSymptomsRecord() {
-          socket.emit('_save_symptom_record_to_db', { symptomRecord: symptomRecord });
-        }
-
-        socket.on('_saved_symptom_record_to_db', function(data) {
-          document.getElementById("main-div").innerHTML = "";
+      function updateAddedSymptoms(symp) {
+        if(!document.getElementById('added-symptoms-div')) {
           renderPartial("main-div",
             `<div class="row">
-              <div class="col s12 center-align">
-                <button id="recordSymptomsButton" onclick="beginSymptomsRecord();" class="waves-effect waves-light btn">
-                  <i class="material-icons left">create</i>Record
-                </button>
+              <div class="added-symptoms-div">
               </div>
             </div>`
           );
-        });
+        }
+
+        renderPartial("added-symptoms-div",
+          `<div id="delete-${symp.name}" class="col s12">
+            <h3>${symp.name}</h3>
+            <a class="btn-floating btn-large waves-effect waves-light red" onclick="removeSymptomFromRecord('${symp.name}');">
+              <i class="material-icons">delete</i>
+            </a>
+          </div>`
+        );
       }
+
+      function removeSymptomFromRecord(sympName) {
+        var found = false;
+        var count = 0;
+        //console.dir(newMeal.foods);
+        while(!found) {
+          if (symptomRecord.symptoms[count].name == sympName) {
+            // then, remove the relevant object
+            symptomRecord.symptoms.splice(count, 1);
+            found = true;
+          }
+          count++;
+        }
+
+        // delete parent div
+        document.getElementById("delete-" + sympName).parentNode.removeChild(document.getElementById("delete-" + sympName));
+      }
+
+      function finishSymptomsRecord() {
+        socket.emit('_save_symptom_record_to_db', { symptomRecord: symptomRecord });
+      }
+
+      socket.on('_saved_symptom_record_to_db', function(data) {
+        document.getElementById("main-div").innerHTML = "";
+        renderPartial("main-div",
+          `<div class="row">
+            <div class="col s12 center-align">
+              <button id="recordSymptomsButton" onclick="beginSymptomsRecord();" class="waves-effect waves-light btn">
+                <i class="material-icons left">create</i>Record
+              </button>
+            </div>
+          </div>`
+        );
+      });
     </script>
 
     <div id="main-div" class="container">
