@@ -73,7 +73,6 @@ function setupCreatedFoodSearch() {
 function finishMeal() {
   //console.dir(newMeal);
 
-
   // creating the timestmap of the meal!
   // grab the date and time inputed
   var date = $('#dateOccured').val()
@@ -84,7 +83,7 @@ function finishMeal() {
 
   var timestampStr = `${date} ${time} ${timezone}`;
   // plug the string into the Date function and get it as a GMT string
-  var timestampMeal = new Date(timestampStr).toGMTString()
+  var timestampMeal = new Date(timestampStr).toGMTString();
 
   newMeal.timestamp_of_meal = timestampMeal;
   newMeal.timestamp_of_recording = (new Date()).toUTCString();

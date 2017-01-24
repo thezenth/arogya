@@ -13,7 +13,7 @@ module.exports = function(socket) {
         console.log(body);
         socket.emit('_saved_meal_to_db', null);
       }
-    })
+    });
 
     // get nutrition information on each food in meal
     /*var foods = newMeal.foods;

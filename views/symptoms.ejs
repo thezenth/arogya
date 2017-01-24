@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title><%= title %></title>
+    <% include ./partials/head.ejs %>
+  </head>
+  <header>
+    <% include ./partials/navbar.ejs %>
+  </header>
+
+  <body>
+
+    <div id="main-div" class="container">
+      <div class="row">
+        <div class="col s12 center-align">
+          <button id="recordSymptomsButton" onclick="beginSymptomsRecord();" class="waves-effect waves-light btn">
+            <i class="material-icons left">create</i>Record
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="/javascripts/symptoms/symptoms-dom-flow.js"></script>
+  <script src="/javascripts/symptoms/symptoms-socket-listeners.js"></script>
+
+  <!-- Client partials -->
+  <script src="/client-partials/symptoms/symptom-addition-form.js"></script>
+  <script src="/client-partials/symptoms/symptom-page-setup.js"></script>
+
+  <% include ./partials/foot.ejs %>
+</html>

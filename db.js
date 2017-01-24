@@ -14,5 +14,6 @@ var db = nano.db;
 module.exports = {
   db: db,
   diet_data: db.use('diet-data'),
-  food_data: db.use('food-data')
+  food_data: db.use('food-data'),
+  symptom_records: db.use('symptom-records')
 }

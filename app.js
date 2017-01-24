@@ -18,10 +18,16 @@ var cfenv = require('cfenv');
  * Get port from environment and store in Express.
  */
 
-var port =  cfenv.getAppEnv().port;
-var host = cfenv.getAppEnv().bind;
+// disable the following in bluemix
+//var port = (process.env.port || 3000);
+// enable in bluemix
+var port = cfenv.getAppEnv().port;
 app.set('port', port);
-app.set('host', host);
+
+//var port =  cfenv.getAppEnv().port;
+//var host = cfenv.getAppEnv().bind;
+//app.set('port', port);
+//app.set('host', host);
 
 //console.log(`PORT: ${port}`);
 //console.log(`HOST: ${host}`);
