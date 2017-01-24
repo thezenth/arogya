@@ -21,7 +21,7 @@ var cfenv = require('cfenv');
 // disable the following in bluemix
 //app.set('port', process.env.port || 3000);
 // enable in bluemix
-app.set('port', appEnv.port);
+app.set('port', cfenv.getAppEnv().port);
 
 //var port =  cfenv.getAppEnv().port;
 //var host = cfenv.getAppEnv().bind;
