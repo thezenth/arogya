@@ -4,6 +4,7 @@
   <head>
     <title><%= title %></title>
     <% include ./partials/head.ejs %>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- <script src="/javascripts/index-food-querying.js"></script>
     <script src="/javascripts/index-socket-listeners.js"></script>
     <script src="/javascripts/dynamic-partials.js"></script> -->
@@ -14,9 +15,12 @@
 
   <body>
     <p>Welcome to the landing page!</p>
-    <!--<div id="main-div" class="container">
-      <button id="newMealButton" onclick="beginNewMeal();">Create a new meal</button>
-    </div>-->
+    <div id="main-div" class="container">
+
+    </div>
+
+    <script src="/javascripts/index/index-plotly-socket-listeners.js"></script>
+
   </body>
 
 </html>
